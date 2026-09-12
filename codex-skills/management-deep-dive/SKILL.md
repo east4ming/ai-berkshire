@@ -3,12 +3,16 @@ name: management-deep-dive
 description: "AI Berkshire skill: 管理层纵深研究：买股票就是买人. Source: skills/management-deep-dive.md."
 ---
 
-## Codex adapter note
+## Harness adapter note
 
-This skill is generated from `skills/management-deep-dive.md` so Claude Code and Codex users share one canonical workflow.
+This skill is generated from `skills/management-deep-dive.md` so Claude Code, Codex and other harnesses share one canonical workflow.
 
-- Treat `$ARGUMENTS` as the user's request in the current Codex thread.
-- When the source mentions Claude-only surfaces such as Task, Agent, WebSearch, Bash, Read, or Write, use the closest Codex capability available in this session: subagents when available, web search when needed, shell commands for local tools, and normal file edits for workspace files.
+- Treat `$ARGUMENTS` as the user's request in the current thread.
+- **Map the surfaces; never fake them.** The workflow text names Claude Code surfaces, so use this session's real tools instead:
+  - `Task` / `Agent` (including `subagent_type: general-purpose`) -> the subagent tool (`subagent` in DSH, `spawn_agent` in Codex). A `run_in_background: true` step means this tool's own background option.
+  - `WebSearch` / `WebFetch` -> `web_search` / `web_fetch`.
+  - `Bash` / `Read` / `Write` -> shell commands and normal file edits.
+  - `TeamCreate` / `TaskCreate` / `TaskUpdate` / `SendMessage` / `TeamDelete` have **no equivalent here**. Do not claim a team or a task board exists: the main agent IS the team-lead, the sub-agents run in parallel in one message, and each sub-agent's final reply IS its report (there is nothing to mark completed or to shut down).
 - Use shared project tools from `tools/` in this repository. Prefer running commands from the repository root with paths like `python3 tools/financial_rigor.py ...`; if the current thread starts outside the repo, locate the actual checkout path first instead of assuming a fixed home-directory path.
 - Before starting research, run the `date` command to confirm today's date; treat it as the baseline for "latest" data and state the data cutoff date in the report header. Never assume the current date from training data.
 - Preserve the research quality rules from `AGENTS.md`: cross-check financial data, use exact arithmetic tools for valuation/math, and clearly label uncertainty and source gaps.
@@ -39,7 +43,7 @@ AI无法和管理层吃饭，但可以通过公开信息做到：
 
 ### 第一步：识别关键管理层并启动并行数据收集
 
-使用 WebSearch 确认以下关键人物：
+用联网搜索（`web_search`；Claude Code 为 WebSearch）确认以下关键人物：
 
 | 角色 | 姓名 | 任期 | 背景 | 持股/期权 |
 |------|------|------|------|----------|
@@ -51,7 +55,7 @@ AI无法和管理层吃饭，但可以通过公开信息做到：
 
 **注意**：区分"谁在做决策"和"谁的名字在头衔上"。有些公司创始人虽然卸任但仍是灵魂人物（如黄峥之于拼多多）。
 
-确认关键人物后，使用 Task 工具启动多个后台 Agent **并行**收集以下数据：
+确认关键人物后，用多个后台子 Agent（Codex/DSH：`subagent`，同一条消息并行；Claude Code：Task 工具）**并行**收集以下数据：
 1. Agent 1：CEO公开发言与预测记录（股东信、电话会、采访、社交媒体）
 2. Agent 2：资本配置决策记录（并购、回购、分红、新业务投资）
 3. Agent 3：治理结构与薪酬（股权结构、关联交易、高管薪酬）

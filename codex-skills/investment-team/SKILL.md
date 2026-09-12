@@ -3,12 +3,16 @@ name: investment-team
 description: "AI Berkshire skill: 投研团队：四角色并行分析框架. Source: skills/investment-team.md."
 ---
 
-## Codex adapter note
+## Harness adapter note
 
-This skill is generated from `skills/investment-team.md` so Claude Code and Codex users share one canonical workflow.
+This skill is generated from `skills/investment-team.md` so Claude Code, Codex and other harnesses share one canonical workflow.
 
-- Treat `$ARGUMENTS` as the user's request in the current Codex thread.
-- When the source mentions Claude-only surfaces such as Task, Agent, WebSearch, Bash, Read, or Write, use the closest Codex capability available in this session: subagents when available, web search when needed, shell commands for local tools, and normal file edits for workspace files.
+- Treat `$ARGUMENTS` as the user's request in the current thread.
+- **Map the surfaces; never fake them.** The workflow text names Claude Code surfaces, so use this session's real tools instead:
+  - `Task` / `Agent` (including `subagent_type: general-purpose`) -> the subagent tool (`subagent` in DSH, `spawn_agent` in Codex). A `run_in_background: true` step means this tool's own background option.
+  - `WebSearch` / `WebFetch` -> `web_search` / `web_fetch`.
+  - `Bash` / `Read` / `Write` -> shell commands and normal file edits.
+  - `TeamCreate` / `TaskCreate` / `TaskUpdate` / `SendMessage` / `TeamDelete` have **no equivalent here**. Do not claim a team or a task board exists: the main agent IS the team-lead, the sub-agents run in parallel in one message, and each sub-agent's final reply IS its report (there is nothing to mark completed or to shut down).
 - Use shared project tools from `tools/` in this repository. Prefer running commands from the repository root with paths like `python3 tools/financial_rigor.py ...`; if the current thread starts outside the repo, locate the actual checkout path first instead of assuming a fixed home-directory path.
 - Before starting research, run the `date` command to confirm today's date; treat it as the baseline for "latest" data and state the data cutoff date in the report header. Never assume the current date from training data.
 - Preserve the research quality rules from `AGENTS.md`: cross-check financial data, use exact arithmetic tools for valuation/math, and clearly label uncertainty and source gaps.
@@ -46,30 +50,28 @@ This skill is generated from `skills/investment-team.md` so Claude Code and Code
 
 将评级结果告知每个Agent，影响其研究方式。
 
-### 第一步¾：WebSearch 权限预检（关键 · 避免 Agent 静默退化）
+### 第一步¾：联网能力预检（关键 · 避免 Agent 静默退化）
 
-在创建团队、启动任何后台 Agent **之前**，必须先确认 WebSearch 权限已放行。
+在启动任何后台子 Agent **之前**，必须先确认联网搜索在本会话**确实可用**。
 
-**为什么必须预检**：本 skill 用 `run_in_background: true` 启动 4 个后台子 Agent，而**后台 Agent 无法向用户弹出交互式权限确认**。若 `WebSearch` 未在 `.claude/settings.local.json` 的 `permissions.allow` 白名单中，子 Agent 的联网搜索会被**静默拦截**，导致其退化为仅凭训练知识（有知识截止日期）作答，却仍按框架输出一份"看起来完整、实则未联网"的伪研究——这是本 skill 最危险的失败模式（见 issue #58）。
+**为什么必须预检**：本 skill 用后台子 Agent 并行研究，而**后台 Agent 无法向用户弹出交互式权限确认**。若联网被静默拦截，子 Agent 会退化为仅凭训练知识（有知识截止日期）作答，却仍按框架输出一份"看起来完整、实则未联网"的伪研究——这是本 skill 最危险的失败模式（见 issue #58）。被拦截的典型情形：Claude Code 的 `WebSearch` 未在 `.claude/settings.local.json` 的 `permissions.allow` 白名单中；DSH/Codex 会话里没有 `web_search` 工具。
 
 **预检步骤**：
-1. 用 Bash 检查白名单是否含 WebSearch：
+1. Claude Code：检查白名单是否含 WebSearch
    ```bash
    grep -l '"WebSearch"' .claude/settings.local.json ~/.claude/settings.local.json 2>/dev/null
    ```
-2. 若两处都未命中（即未放行）→ **停下来，不要启动 Agent**，提示用户：
-   > ⚠️ 检测到 WebSearch 未在权限白名单中。后台研究 Agent 无法联网，会退化成仅凭训练知识作答。请先在 `.claude/settings.local.json` 的 `permissions.allow` 加入 `"WebSearch"`（或运行 `/permissions` 勾选），再重跑本命令。
-3. 命中 → 正常继续。
+2. DSH / Codex 等其他环境：确认 `web_search` 工具存在（可用一个小查询实测）。
+3. 未放行 → **停下来，不要启动 Agent**，提示用户先修复联网权限（Claude Code 可在 `.claude/settings.local.json` 的 `permissions.allow` 加入 `"WebSearch"`，或运行 `/permissions` 勾选）。
+4. 已放行 → 正常继续。
 
-### 第二步：创建团队
+### 第二步：并行子 Agent（无需团队原语）
 
-使用 TeamCreate 创建团队：
-- team_name: `{公司名}-research`（英文小写，如 `meituan-research`）
-- agent_type: `team-lead`
+本流程不依赖任何团队/任务工具：**主 Agent 自己就是 team-lead**，"团队名" `{公司名}-research` 只作标签用，直接并行启动 4 个子 Agent 即可。**若本会话没有团队原语（TeamCreate/TaskCreate 等），就直接说明用并行 Agent 代替，不要假装已创建团队或任务。**
 
-### 第三步：创建4个任务
+### 第三步：4 个分析维度
 
-使用 TaskCreate 创建以下4个任务（每个都要有 subject、description、activeForm）：
+下面 4 段就是 4 个子 Agent 的 prompt 内容：
 
 #### 任务1：商业模式分析
 - subject: `分析{公司名}商业模式、护城河与用户价值`
@@ -123,13 +125,7 @@ This skill is generated from `skills/investment-team.md` so Claude Code and Code
 
 ### 第四步：启动4个并行Agent
 
-使用 Task 工具同时启动4个Agent（**必须在同一条消息中并行调用**）：
-
-每个Agent的配置：
-- `subagent_type`: `general-purpose`
-- `run_in_background`: `true`
-- `team_name`: 对应团队名
-- `name`: 对应角色名（business-analyst / financial-analyst / industry-researcher / risk-assessor）
+在**同一条消息**中并行调用 4 次子 Agent 工具（Codex / DSH：`subagent`；Claude Code：Task 工具），每个都开后台（`run_in_background: true`），并各自标好角色名（business-analyst / financial-analyst / industry-researcher / risk-assessor）。
 
 每个Agent的prompt模板：
 
@@ -142,20 +138,18 @@ This skill is generated from `skills/investment-team.md` so Claude Code and Code
 {任务description的内容}
 
 **研究方法**：
-- 使用 WebSearch 搜索最新公开信息（财报、行业报告、新闻）
+- 使用联网搜索获取最新公开信息（`web_search`；Claude Code 为 WebSearch）
 - **财务数据必须来自两个独立来源**，按 `skills/financial-data.md` 规范执行（美股：macrotrends+stockanalysis；港股：aastocks+macrotrends；A股：东方财富+巨潮资讯；台股：FinMind `tools/twstock_data.py`+Goodinfo），两源误差>1%须标记
 - 确保数据准确，关键数据标注来源
 - 分析要深入，不流于表面
-- **联网失败禁止伪装**：若 WebSearch 被拦截/不可用，禁止用训练知识冒充联网结果。必须在报告顶部醒目标注「⚠️ 本报告未能联网，基于训练知识（截止日期 X），置信度降级」，并如实告知 team-lead，由其决定是否中止研究
+- **联网失败禁止伪装**：若联网搜索被拦截/不可用，禁止用训练知识冒充联网结果。必须在报告顶部醒目标注「⚠️ 本报告未能联网，基于训练知识（截止日期 X），置信度降级」，并如实告知主 Agent，由其决定是否中止研究
 
 **输出要求**：
 - 报告要详尽，使用Markdown表格呈现关键数据
 - 每个分析维度要有明确结论和评分
 - 报告末尾要有该维度的总体结论
 
-**完成后**：
-1. 使用 TaskUpdate 将任务 #{任务编号} 标记为 completed
-2. 通过 SendMessage 把完整分析报告发送给 team-lead（type: "message", recipient: "team-lead"）
+**完成后**：你的最终回复就是这份分析报告本身，直接交回主 Agent（team-lead）——无需 TaskUpdate，也无需 SendMessage。
 ```
 
 ### 第五步：接收报告并跟踪进度
@@ -164,9 +158,9 @@ This skill is generated from `skills/investment-team.md` so Claude Code and Code
 - 每收到一份报告，更新进度并展示该报告的核心要点（3-5条）
 - 等待全部4份报告到齐
 
-### 第六步：关闭团队成员
+### 第六步：收尾（无需关闭成员）
 
-全部报告收到后，向4个Agent发送 shutdown_request（使用 SendMessage，type: "shutdown_request"）。
+无需发送 shutdown_request：子 Agent 交回报告后自动结束。
 
 ### 第七步：汇总最终报告
 
@@ -209,7 +203,10 @@ This skill is generated from `skills/investment-team.md` so Claude Code and Code
 
 ### 第八步：保存报告
 
-将完整最终报告写入 `~/{公司名}投资研究报告_{日期}.md`（日期格式 YYYYMMDD）。
+将完整最终报告写入 `reports/{公司名}/最终报告.md`（目录不存在则创建，按 `CLAUDE.md` 的报告命名规范：公司相关的所有报告都放该公司的目录内）。
+
+> **必须落在会话工作区内的 `reports/` 下，不要写 `~/` 或仓库外的绝对路径**——受限写入的工作区（如 DSH 的 workspace-write）会直接拒绝工作区外的写操作，报告可能写不出来或散落到主目录。
+> 历史遗留的扁平文件 `{公司名}投资研究报告_{日期}.md` 仍可读，但新报告不再写到该位置。
 
 ### 第九步：数据抽检（准出流程）
 
@@ -228,15 +225,15 @@ python3 tools/report_audit.py verdict \
 
 **【准出】** 全部通过 → 报告可发布；**【打回】** 有不通过 → 修正后重审。
 
-### 第十步：清理团队
+### 第十步：收尾
 
-使用 TeamDelete 清理团队资源。
+无需清理团队资源（本流程不使用团队原语）。
 
 ## 重要注意事项
 
-1. **4个Agent必须并行启动**——在同一条消息中调用4次Task工具
-2. **Agent通过SendMessage汇报**——不是文件协作，是消息通信
-3. **数据准确性**——要求Agent使用WebSearch搜索最新数据，关键数据交叉验证
+1. **4个Agent必须并行启动**——在同一条消息中并行调用4次子 Agent 工具（Codex/DSH：`subagent`；Claude Code：Task）
+2. **子 Agent 的最终回复即汇报**——不是文件协作，是消息回传；没有团队原语时不要假装有
+3. **数据准确性**——要求 Agent 联网搜索最新数据，关键数据交叉验证
 4. **结论要明确**——不回避给出买入/观望/回避建议和具体价格区间
 5. **所有分析必须有数据支撑**——附数据来源
 6. **耐心等待**——4个Agent研究需要几分钟，实时向用户更新进度

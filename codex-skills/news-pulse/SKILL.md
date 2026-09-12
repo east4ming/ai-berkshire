@@ -3,12 +3,16 @@ name: news-pulse
 description: 公司新闻脉搏：股价异动时快速归因。用 4 个并行 Agent 侦察公司事件/监管政策/行业对手/市场情绪，产出"事件时间线 + 异动主因判断 + 是否触发论文重审"。
 ---
 
-## Codex adapter note
+## Harness adapter note
 
-This skill is generated from `skills/news-pulse.md` so Claude Code and Codex users share one canonical workflow.
+This skill is generated from `skills/news-pulse.md` so Claude Code, Codex and other harnesses share one canonical workflow.
 
-- Treat `$ARGUMENTS` as the user's request in the current Codex thread.
-- When the source mentions Claude-only surfaces such as Task, Agent, WebSearch, Bash, Read, or Write, use the closest Codex capability available in this session: subagents when available, web search when needed, shell commands for local tools, and normal file edits for workspace files.
+- Treat `$ARGUMENTS` as the user's request in the current thread.
+- **Map the surfaces; never fake them.** The workflow text names Claude Code surfaces, so use this session's real tools instead:
+  - `Task` / `Agent` (including `subagent_type: general-purpose`) -> the subagent tool (`subagent` in DSH, `spawn_agent` in Codex). A `run_in_background: true` step means this tool's own background option.
+  - `WebSearch` / `WebFetch` -> `web_search` / `web_fetch`.
+  - `Bash` / `Read` / `Write` -> shell commands and normal file edits.
+  - `TeamCreate` / `TaskCreate` / `TaskUpdate` / `SendMessage` / `TeamDelete` have **no equivalent here**. Do not claim a team or a task board exists: the main agent IS the team-lead, the sub-agents run in parallel in one message, and each sub-agent's final reply IS its report (there is nothing to mark completed or to shut down).
 - Use shared project tools from `tools/` in this repository. Prefer running commands from the repository root with paths like `python3 tools/financial_rigor.py ...`; if the current thread starts outside the repo, locate the actual checkout path first instead of assuming a fixed home-directory path.
 - Before starting research, run the `date` command to confirm today's date; treat it as the baseline for "latest" data and state the data cutoff date in the report header. Never assume the current date from training data.
 - Preserve the research quality rules from `AGENTS.md`: cross-check financial data, use exact arithmetic tools for valuation/math, and clearly label uncertainty and source gaps.
@@ -51,15 +55,13 @@ This skill is generated from `skills/news-pulse.md` so Claude Code and Codex use
 
 将评级告知每个 Agent，影响其侦察方式。
 
-### 第三步：创建团队
+### 第三步：并行子 Agent（无需团队原语）
 
-使用 TeamCreate 创建团队：
-- `team_name`: `{公司名}-newspulse`（英文小写，如 `pdd-newspulse`）
-- `agent_type`: `team-lead`
+本流程不依赖任何团队/任务工具：**主 Agent 自己就是 team-lead**，"团队名" `{公司名}-newspulse` 只作标签用。直接并行启动 4 个子 Agent 即可。**若本会话没有团队原语（TeamCreate/TaskCreate 等），就直接说明用并行 Agent 代替，不要假装已创建团队或任务。**
 
-### 第四步：创建 4 个侦察任务
+### 第四步：4 个侦察维度
 
-使用 TaskCreate 创建以下 4 个任务：
+下面 4 段就是 4 个子 Agent 的 prompt 内容：
 
 #### 任务 1：公司事件侦察（company-event-scout）
 
@@ -106,21 +108,25 @@ This skill is generated from `skills/news-pulse.md` so Claude Code and Codex use
   1. **卖方评级变动**：高盛、摩根、中金等最近的评级/目标价调整
   2. **机构持仓变化**：13F 披露（美股）、港股通持仓、北上资金流向
   3. **做空数据**：做空比例、新发布的做空报告（如有）
-  4. **大 V 观点**：可调用 `python3 tools/xueqiu_scraper.py` 抓段永平等大 V 最近相关发言
+  4. **大 V 观点**：可调用 `tools/xueqiu_scraper.py` 抓段永平等大 V 最近相关发言
      - 段永平 user_id: `1247347556`
-     - 命令示例：`python3 tools/xueqiu_scraper.py --user-id 1247347556 --keywords {公司名},{股票代码} --output /tmp/dyp-{公司名}.md`
-     - 仅在该公司是段永平/李录关注标的时调用，否则跳过节省时间
+     - 依赖 `playwright` + Chromium，**不在标准库里**。若 `python3 tools/xueqiu_scraper.py` 报 `ModuleNotFoundError: No module named 'playwright'`，先用 uv 起环境（无需改动仓库）：
+       ```bash
+       uv run --with playwright python3 -m playwright install chromium   # 首次，下载浏览器
+       uv run --with playwright python3 tools/xueqiu_scraper.py \
+         --user-id 1247347556 --keywords {公司名},{股票代码} \
+         --output reports/{公司名}/大V发言-{公司名}-{YYYYMMDD}.md \
+         --state-path .cache/xueqiu_state.json
+       ```
+     - 登录只能人工：脚本首次运行会开一个 headful 浏览器、轮询 10 分钟等你在窗口里手动登录（环境变量 `XQ_PHONE`/`XQ_PASSWORD` **代码并未使用**，设了不会自动登录）。登录态默认存 `/tmp/xueqiu_state.json`（重启即失效），建议用 `--state-path` 指向持久路径。**路径要落在会话工作区内**（上例 `.cache/` 就是相对工作区）；写成 `~/.cache/...` 这类工作区外路径，在受限写入的工作区（如 DSH 的 workspace-write）下可能被拒绝。
+     - 仅在该公司是段永平/李录关注标的时调用，否则跳过节省时间；工具不可用就跳过并声明"大 V 观点未取到"，**不要用转述冒充**
   5. **传言与小作文**：媒体未证实的传言、社交媒体讨论热点（雪球/X/Reddit）
   6. **技术面信号**：是否触及关键支撑/阻力、是否有大宗交易、融资融券异常
   7. 关键判断：**是基本面驱动还是情绪/资金面驱动？**
 
 ### 第五步：并行启动 4 个 Agent
 
-**必须在同一条消息中并行调用 4 次 Task 工具**。每个 Agent 配置：
-- `subagent_type`: `general-purpose`
-- `run_in_background`: `true`
-- `team_name`: `{公司名}-newspulse`
-- `name`: 对应角色名（company-event-scout / regulatory-watcher / industry-peer-analyst / sentiment-tracker）
+**必须在同一条消息中并行调用 4 次子 Agent 工具**（Codex / DSH：`subagent`；Claude Code：Task 工具），每个都开后台（`run_in_background: true`），并各自标好角色名（company-event-scout / regulatory-watcher / industry-peer-analyst / sentiment-tracker）。
 
 每个 Agent 的 prompt 模板：
 
@@ -137,8 +143,8 @@ This skill is generated from `skills/news-pulse.md` so Claude Code and Codex use
 {任务description的内容}
 
 **侦察方法**：
-- 优先使用 WebSearch 搜索时效性查询（关键词加日期或"最近"、"latest"、"2026"）
-- 关键事件用 WebFetch 精读原始来源（公告原文、财报、监管文件）
+- 优先用联网搜索做时效性查询（`web_search`；Claude Code 为 WebSearch），关键词加日期或"最近"、"latest"、"2026"
+- 关键事件用 `web_fetch`（Claude Code 为 WebFetch）精读原始来源（公告原文、财报、监管文件）
 - 对每个事件做"独立信源验证"——传言至少要 2 个独立来源
 - **不要被标题党误导**：标题与正文不符的事件要标注"标题误导"
 
@@ -150,18 +156,16 @@ This skill is generated from `skills/news-pulse.md` so Claude Code and Codex use
 4. **数据缺口声明**：哪些信息没找到、哪些有疑点、哪些需要等更多信息
 5. 严格区分"事实"与"推测"，遵循 CLAUDE.md 客观性原则
 
-**完成后**：
-1. 使用 TaskUpdate 将任务标记为 completed
-2. 通过 SendMessage 把完整侦察报告发送给 team-lead（type: "message", recipient: "team-lead"）
+**完成后**：你的最终回复就是这份侦察报告本身，直接交回主 Agent（team-lead）——无需 TaskUpdate，也无需 SendMessage。
 ```
 
 ### 第六步：实时跟踪进度
 
 - 每收到一份侦察报告，向用户展示该维度的 3 条核心发现
 - 等待全部 4 份到齐
-- 全部到齐后，通过 SendMessage 向 4 个 Agent 发送 shutdown_request
+- 无需发送 shutdown_request：子 Agent 交回报告后自动结束
 
-### 第七步：team-lead 综合归因
+### 第七步：主 Agent（team-lead）综合归因
 
 汇总 4 份侦察报告，输出**异动归因报告**（不是研究报告，重点是"判断"）：
 
@@ -228,9 +232,9 @@ This skill is generated from `skills/news-pulse.md` so Claude Code and Codex use
 
 写入 `reports/{公司名}/{公司名}-news-{YYYYMMDD}.md`。如果 `reports/{公司名}/` 目录不存在则创建（说明该公司还没建过任何研究报告）。
 
-### 第九步：清理团队
+### 第九步：收尾
 
-使用 TeamDelete 清理团队资源。
+无需清理团队资源（本流程不使用团队原语）。
 
 ## 关键原则
 

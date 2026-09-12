@@ -3,12 +3,16 @@ name: quality-screen
 description: "AI Berkshire skill: 去劣筛选：7条指标快速排除非一流公司. Source: skills/quality-screen.md."
 ---
 
-## Codex adapter note
+## Harness adapter note
 
-This skill is generated from `skills/quality-screen.md` so Claude Code and Codex users share one canonical workflow.
+This skill is generated from `skills/quality-screen.md` so Claude Code, Codex and other harnesses share one canonical workflow.
 
-- Treat `$ARGUMENTS` as the user's request in the current Codex thread.
-- When the source mentions Claude-only surfaces such as Task, Agent, WebSearch, Bash, Read, or Write, use the closest Codex capability available in this session: subagents when available, web search when needed, shell commands for local tools, and normal file edits for workspace files.
+- Treat `$ARGUMENTS` as the user's request in the current thread.
+- **Map the surfaces; never fake them.** The workflow text names Claude Code surfaces, so use this session's real tools instead:
+  - `Task` / `Agent` (including `subagent_type: general-purpose`) -> the subagent tool (`subagent` in DSH, `spawn_agent` in Codex). A `run_in_background: true` step means this tool's own background option.
+  - `WebSearch` / `WebFetch` -> `web_search` / `web_fetch`.
+  - `Bash` / `Read` / `Write` -> shell commands and normal file edits.
+  - `TeamCreate` / `TaskCreate` / `TaskUpdate` / `SendMessage` / `TeamDelete` have **no equivalent here**. Do not claim a team or a task board exists: the main agent IS the team-lead, the sub-agents run in parallel in one message, and each sub-agent's final reply IS its report (there is nothing to mark completed or to shut down).
 - Use shared project tools from `tools/` in this repository. Prefer running commands from the repository root with paths like `python3 tools/financial_rigor.py ...`; if the current thread starts outside the repo, locate the actual checkout path first instead of assuming a fixed home-directory path.
 - Before starting research, run the `date` command to confirm today's date; treat it as the baseline for "latest" data and state the data cutoff date in the report header. Never assume the current date from training data.
 - Preserve the research quality rules from `AGENTS.md`: cross-check financial data, use exact arithmetic tools for valuation/math, and clearly label uncertainty and source gaps.
@@ -85,7 +89,7 @@ This skill is generated from `skills/quality-screen.md` so Claude Code and Codex
 **模式判断**：
 - 如果输入是具体公司名/代码 → **个股模式**，直接进入第二步
 - 如果输入是行业/市场/主题 → **批量模式**，先执行以下操作：
-  1. 用 WebSearch 搜索该行业/市场/主题下的主要上市公司
+  1. 用联网搜索（`web_search`；Claude Code 为 WebSearch）搜索该行业/市场/主题下的主要上市公司
   2. 行业模式：覆盖该行业市值前15-20家上市公司
   3. 指数模式：拉取完整成分股列表
   4. 主题模式：搜索相关公司，覆盖15-30家
@@ -95,7 +99,7 @@ This skill is generated from `skills/quality-screen.md` so Claude Code and Codex
 
 ### 第二步：并行数据收集
 
-为每家公司启动独立后台Agent，使用 WebSearch 搜索以下数据：
+为每家公司启动独立后台 Agent（Codex/DSH：`subagent`；Claude Code：Task 工具），用联网搜索（`web_search`）获取以下数据：
 
 1. **ROE**：近10年（或上市以来）的逐年ROE，计算平均值
 2. **自由现金流**：近5年的经营现金流和资本开支，计算5年累计FCF

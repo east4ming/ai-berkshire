@@ -3,12 +3,16 @@ name: private-company-research
 description: "AI Berkshire skill: 未上市公司研究：多Agent并行深度研究框架. Source: skills/private-company-research.md."
 ---
 
-## Codex adapter note
+## Harness adapter note
 
-This skill is generated from `skills/private-company-research.md` so Claude Code and Codex users share one canonical workflow.
+This skill is generated from `skills/private-company-research.md` so Claude Code, Codex and other harnesses share one canonical workflow.
 
-- Treat `$ARGUMENTS` as the user's request in the current Codex thread.
-- When the source mentions Claude-only surfaces such as Task, Agent, WebSearch, Bash, Read, or Write, use the closest Codex capability available in this session: subagents when available, web search when needed, shell commands for local tools, and normal file edits for workspace files.
+- Treat `$ARGUMENTS` as the user's request in the current thread.
+- **Map the surfaces; never fake them.** The workflow text names Claude Code surfaces, so use this session's real tools instead:
+  - `Task` / `Agent` (including `subagent_type: general-purpose`) -> the subagent tool (`subagent` in DSH, `spawn_agent` in Codex). A `run_in_background: true` step means this tool's own background option.
+  - `WebSearch` / `WebFetch` -> `web_search` / `web_fetch`.
+  - `Bash` / `Read` / `Write` -> shell commands and normal file edits.
+  - `TeamCreate` / `TaskCreate` / `TaskUpdate` / `SendMessage` / `TeamDelete` have **no equivalent here**. Do not claim a team or a task board exists: the main agent IS the team-lead, the sub-agents run in parallel in one message, and each sub-agent's final reply IS its report (there is nothing to mark completed or to shut down).
 - Use shared project tools from `tools/` in this repository. Prefer running commands from the repository root with paths like `python3 tools/financial_rigor.py ...`; if the current thread starts outside the repo, locate the actual checkout path first instead of assuming a fixed home-directory path.
 - Before starting research, run the `date` command to confirm today's date; treat it as the baseline for "latest" data and state the data cutoff date in the report header. Never assume the current date from training data.
 - Preserve the research quality rules from `AGENTS.md`: cross-check financial data, use exact arithmetic tools for valuation/math, and clearly label uncertainty and source gaps.
@@ -67,15 +71,13 @@ This skill is generated from `skills/private-company-research.md` so Claude Code
 | **tech-ip-analyst** | 技术栈/专利/研发能力/技术护城河 | "技术壁垒是真是假，能撑多久" |
 | **signal-miner** | 替代数据挖掘：招聘/专利/诉讼/App数据/供应链 | "常规信息之外，还有什么蛛丝马迹" |
 
-### 第二步：创建团队
+### 第二步：并行子 Agent（无需团队原语）
 
-使用 TeamCreate 创建团队：
-- team_name: `{公司名}-private-research`（英文小写，如 `ant-group-private-research`）
-- agent_type: `team-lead`
+本流程不依赖任何团队/任务工具：**主 Agent 自己就是 team-lead**，"团队名" `{公司名}-private-research` 只作标签用，直接并行启动 6 个子 Agent 即可。**若本会话没有团队原语（TeamCreate/TaskCreate 等），就直接说明用并行 Agent 代替，不要假装已创建团队或任务。**
 
-### 第三步：创建6个任务
+### 第三步：6 个挖掘维度
 
-使用 TaskCreate 创建以下6个任务（每个都要有 subject、description、activeForm）：
+下面 6 段就是 6 个子 Agent 的 prompt 内容：
 
 ---
 
@@ -801,11 +803,7 @@ This skill is generated from `skills/private-company-research.md` so Claude Code
 
 ### 第四步：启动6个并行Agent
 
-使用 Agent 工具同时启动6个Agent（**必须在同一条消息中并行调用**）：
-
-每个Agent的配置：
-- `subagent_type`: `general-purpose`
-- `run_in_background`: `true`
+在**同一条消息**中并行调用 6 次子 Agent 工具（Codex / DSH：`subagent`；Claude Code：Task 工具），每个都开后台（`run_in_background: true`）。
 
 每个Agent的prompt模板：
 
@@ -824,7 +822,7 @@ This skill is generated from `skills/private-company-research.md` so Claude Code
 {任务description的内容}
 
 **研究方法**：
-1. 使用 WebSearch 搜索最新公开信息，每个维度至少搜索3-5次，用不同关键词组合
+1. 使用联网搜索获取最新公开信息（`web_search`；Claude Code 为 WebSearch），每个维度至少搜索3-5次，用不同关键词组合
 2. 搜索关键词策略：
    - 中文：公司名+收入/估值/融资/用户数/MAU/IPO/招股书/裁员/整改
    - 英文：Company Name + revenue/valuation/funding/users/IPO/filing
@@ -834,7 +832,7 @@ This skill is generated from `skills/private-company-research.md` so Claude Code
    - 高可信度：招股书、监管文件、上市公司年报中的关联披露
    - 中可信度：晚点LatePost、The Information、36氪、Bloomberg、Reuters、TechCrunch
    - 辅助验证：知乎、脉脉、Glassdoor、天眼查、企查查
-4. 使用 WebFetch 获取关键文章的全文（不要只看搜索摘要）
+4. 用 `web_fetch`（Claude Code 为 WebFetch）获取关键文章的全文（不要只看搜索摘要）
 5. 对重要数据，至少用2个不同来源交叉验证
 
 **数据标注规范（严格执行）**：
@@ -1064,15 +1062,15 @@ Top 3 核心风险及应对策略
 
 将完整最终报告写入 `reports/{公司名}/{公司名}-private-{YYYYMMDD}.md`。
 
-### 第九步：清理团队
+### 第九步：收尾
 
-使用 TeamDelete 清理团队资源。
+无需清理团队资源（本流程不使用团队原语）。
 
 ---
 
 ## 重要注意事项
 
-1. **6个Agent必须并行启动**——在同一条消息中调用6次Agent工具
+1. **6个Agent必须并行启动**——在同一条消息中并行调用6次子 Agent 工具（Codex/DSH：`subagent`；Claude Code：Task）
 2. **数据置信度标注**——未上市公司数据来源参差不齐，每个关键数据必须标注来源和置信度
 3. **推算要透明**——所有推算过程要展示计算逻辑，不能凭空给数字
 4. **交叉验证**——关键数据至少2个来源交叉验证，来源冲突时都列出
