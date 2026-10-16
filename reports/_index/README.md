@@ -16,12 +16,24 @@
 ## 用法
 
 ```bash
-# 写完新报告后跑一次
-python3 tools/reports_index.py
+# 先把本次要发布的报告及附件加入暂存区（替换为实际目录）
+git add -- reports/本次研究目录/
 
-# CI 用：只检查是否过期，不写盘
+# 再生成索引，报告与三份索引产物须在同一次提交中提交
+python3 tools/reports_index.py
+git add -- README.md reports/README.md reports/index.json
+
+# 提交前/CI 检查：只检查是否过期，不写盘
 python3 tools/reports_index.py --check
 ```
+
+索引只收录 Git 暂存区中已有的文件，包括刚 `git add` 的新报告。
+未跟踪、被 `.gitignore` 忽略或仅执行过 `git add -N` 的本地文件不会被收录。
+如果把新报告移出暂存区，应重新生成索引；不要只提交索引而漏掉报告原文。
+
+遇到索引有链接、GitHub 上却 404 的情况，先检查 `git status --short` 和
+`git ls-files -- reports/对应目录/`。如果原稿尚在本地，按上述顺序补交报告和索引；
+如果原稿已不在当前 checkout，需从原工作目录或备份找回，索引本身不能恢复正文。
 
 ## 元数据从哪来
 
@@ -62,5 +74,6 @@ type: 财报
 
 ## 隐私
 
-脚本会调用 `git check-ignore` 过滤掉被 `.gitignore` 命中的文件
-（例如 `reports/portfolio-latest.md` 组合报告），确保本地私有内容不会被写进公开索引。
+脚本通过 Git 暂存区路径清单限制公开索引的范围。未加入 Git 的本地文件
+（包括被 `.gitignore` 忽略的 `reports/portfolio-latest.md`）不会被读取或写进索引。
+Git 不可用时停止生成，不退回扫描全部本地文件。显式 `git add -f` 的文件会被视为待发布文件。
