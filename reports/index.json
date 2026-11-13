@@ -785,6 +785,17 @@
       "ticker": ""
     },
     {
+      "title": "数据抽检覆盖说明",
+      "path": "reports/美股七姐妹-20261019/特斯拉/audit-coverage.md",
+      "bucket": "专题",
+      "group": "美股七姐妹-20261019",
+      "series": "特斯拉",
+      "type": "底稿",
+      "date": "2026-10-19",
+      "date_source": "git",
+      "ticker": ""
+    },
+    {
       "title": "微软（MSFT）独立投资研究报告",
       "path": "reports/美股七姐妹-20261019/微软/微软投资研究报告-20261019.md",
       "bucket": "专题",
@@ -804,6 +815,28 @@
       "type": "研究",
       "date": "2026-10-19",
       "date_source": "文件名",
+      "ticker": ""
+    },
+    {
+      "title": "抽检审计说明",
+      "path": "reports/美股七姐妹-20261019/亚马逊/report-audit-notes.md",
+      "bucket": "专题",
+      "group": "美股七姐妹-20261019",
+      "series": "亚马逊",
+      "type": "底稿",
+      "date": "2026-10-19",
+      "date_source": "git",
+      "ticker": ""
+    },
+    {
+      "title": "Meta 审计覆盖说明",
+      "path": "reports/美股七姐妹-20261019/Meta/audit-coverage.md",
+      "bucket": "专题",
+      "group": "美股七姐妹-20261019",
+      "series": "Meta",
+      "type": "底稿",
+      "date": "2026-10-19",
+      "date_source": "git",
       "ticker": ""
     },
     {
@@ -881,6 +914,50 @@
       "type": "底稿",
       "date": "2026-10-19",
       "date_source": "文件名",
+      "ticker": ""
+    },
+    {
+      "title": "财务表",
+      "path": "reports/七公司投资研究-20261002/腾讯/财务表.md",
+      "bucket": "专题",
+      "group": "七公司投资研究-20261002",
+      "series": "腾讯",
+      "type": "底稿",
+      "date": "2026-10-18",
+      "date_source": "git",
+      "ticker": ""
+    },
+    {
+      "title": "美团研究报告审计说明",
+      "path": "reports/七公司投资研究-20261002/美团/审计说明.md",
+      "bucket": "专题",
+      "group": "七公司投资研究-20261002",
+      "series": "美团",
+      "type": "底稿",
+      "date": "2026-10-18",
+      "date_source": "git",
+      "ticker": ""
+    },
+    {
+      "title": "财务表",
+      "path": "reports/七公司投资研究-20261002/拼多多/财务表.md",
+      "bucket": "专题",
+      "group": "七公司投资研究-20261002",
+      "series": "拼多多",
+      "type": "底稿",
+      "date": "2026-10-18",
+      "date_source": "git",
+      "ticker": ""
+    },
+    {
+      "title": "快手研究报告审计说明",
+      "path": "reports/七公司投资研究-20261002/快手/审计说明.md",
+      "bucket": "专题",
+      "group": "七公司投资研究-20261002",
+      "series": "快手",
+      "type": "底稿",
+      "date": "2026-10-18",
+      "date_source": "git",
       "ticker": ""
     },
     {
@@ -27369,83 +27446,6 @@
       "type": "财报",
       "date": "2024-11-21",
       "date_source": "正文",
-      "ticker": ""
-    },
-    {
-      "title": "数据抽检覆盖说明",
-      "path": "reports/美股七姐妹-20261019/特斯拉/audit-coverage.md",
-      "bucket": "专题",
-      "group": "美股七姐妹-20261019",
-      "series": "特斯拉",
-      "type": "底稿",
-      "date": "",
-      "date_source": "缺失",
-      "ticker": ""
-    },
-    {
-      "title": "抽检审计说明",
-      "path": "reports/美股七姐妹-20261019/亚马逊/report-audit-notes.md",
-      "bucket": "专题",
-      "group": "美股七姐妹-20261019",
-      "series": "亚马逊",
-      "type": "底稿",
-      "date": "",
-      "date_source": "缺失",
-      "ticker": ""
-    },
-    {
-      "title": "Meta 审计覆盖说明",
-      "path": "reports/美股七姐妹-20261019/Meta/audit-coverage.md",
-      "bucket": "专题",
-      "group": "美股七姐妹-20261019",
-      "series": "Meta",
-      "type": "底稿",
-      "date": "",
-      "date_source": "缺失",
-      "ticker": ""
-    },
-    {
-      "title": "财务表",
-      "path": "reports/七公司投资研究-20261002/腾讯/财务表.md",
-      "bucket": "专题",
-      "group": "七公司投资研究-20261002",
-      "series": "腾讯",
-      "type": "底稿",
-      "date": "",
-      "date_source": "缺失",
-      "ticker": ""
-    },
-    {
-      "title": "美团研究报告审计说明",
-      "path": "reports/七公司投资研究-20261002/美团/审计说明.md",
-      "bucket": "专题",
-      "group": "七公司投资研究-20261002",
-      "series": "美团",
-      "type": "底稿",
-      "date": "",
-      "date_source": "缺失",
-      "ticker": ""
-    },
-    {
-      "title": "财务表",
-      "path": "reports/七公司投资研究-20261002/拼多多/财务表.md",
-      "bucket": "专题",
-      "group": "七公司投资研究-20261002",
-      "series": "拼多多",
-      "type": "底稿",
-      "date": "",
-      "date_source": "缺失",
-      "ticker": ""
-    },
-    {
-      "title": "快手研究报告审计说明",
-      "path": "reports/七公司投资研究-20261002/快手/审计说明.md",
-      "bucket": "专题",
-      "group": "七公司投资研究-20261002",
-      "series": "快手",
-      "type": "底稿",
-      "date": "",
-      "date_source": "缺失",
       "ticker": ""
     }
   ]
