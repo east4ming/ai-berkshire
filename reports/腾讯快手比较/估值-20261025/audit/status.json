@@ -1,0 +1,26 @@
+{
+  "status": "PASS_WITH_EXPLICIT_SCOPE",
+  "report_sha256": "6b64f1667838cd061dd1a7e373046b4b52aa1b4d97777d729cbbf7af51a9813e",
+  "requested_sample_ratio": ".15",
+  "seed": 42,
+  "extracted_points": 225,
+  "sampled": 30,
+  "tool_sample_cap": 30,
+  "actual_sample_fraction": "30/225 = 13.33%",
+  "facts_and_financial_derivations": 11,
+  "model_calculations": 12,
+  "assumptions_excluded_from_fact_pass": 5,
+  "date_fragments": 2,
+  "independent_full_model_checks": 312,
+  "shared_engine_core_components": 6,
+  "not_verified": [
+    "forecast accuracy",
+    "probabilities",
+    "live complete diluted cap tables",
+    "October complete financial balances",
+    "Kling cash receipt and standalone current-period audited costs",
+    "Tencent complete mark-to-market investment portfolio",
+    "historical table full two-source audit"
+  ],
+  "note": "Tool passes certify declared sample/calculation scope only. Source judgments and investment outcomes are not machine-verified."
+}

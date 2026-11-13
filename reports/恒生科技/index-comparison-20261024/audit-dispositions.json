@@ -1,0 +1,68 @@
+[
+  {
+    "id": 4,
+    "label": "纳斯达克 100 NDX · 2022-10-31 收盘",
+    "kind": "source",
+    "source_limit": "KFH Capital October 2022 p3 / Refinitiv; sources.md"
+  },
+  {
+    "id": 5,
+    "label": "纳斯达克 100 NDX · 2026-10-23 收盘",
+    "kind": "source",
+    "source_limit": "Single originating market-data chain; not dual-source"
+  },
+  {
+    "id": 12,
+    "label": "恒生科技 PE-TTM · 倍数变化",
+    "kind": "formula",
+    "source_limit": "Vendor-method limitation remains"
+  },
+  {
+    "id": 15,
+    "label": "恒生科技 PB · 倍数变化",
+    "kind": "formula",
+    "source_limit": "Vendor-method limitation remains"
+  },
+  {
+    "id": 14,
+    "label": "恒生科技 PB · 最新可得观察",
+    "kind": "source",
+    "source_limit": "baifenwei.com/index/hstech; rounded, possibly same upstream, NOT independent"
+  },
+  {
+    "id": 18,
+    "label": "纳指 100 PE-TTM · 倍数变化",
+    "kind": "formula",
+    "source_limit": "Vendor-method limitation remains"
+  },
+  {
+    "id": 29,
+    "label": "微软，FY2026Q4 · 盈利或现金指标",
+    "kind": "source",
+    "source_limit": "StockAnalysis Q4 2026 transcript, same originating disclosure; NOT independent"
+  },
+  {
+    "id": 32,
+    "label": "美国十年恒定期限国债收益率 · 变化方向",
+    "kind": "formula",
+    "source_limit": "Same official time series"
+  },
+  {
+    "id": 36,
+    "label": "恒科：压力 · 第五年 PE",
+    "kind": "assumption",
+    "source_limit": "Not a historical fact"
+  },
+  {
+    "id": 55,
+    "label": "纳指：中间假设 · 每单位盈利年增速",
+    "kind": "assumption",
+    "source_limit": "Not consensus or a forecast certification"
+  },
+  {
+    "id": 70,
+    "label": "纳指中间假设 · 起始 PE",
+    "kind": "assumption",
+    "source_limit": "Not independently reconstructed economic PE"
+  }
+]

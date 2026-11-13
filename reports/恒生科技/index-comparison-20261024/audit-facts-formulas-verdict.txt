@@ -1,0 +1,27 @@
+======================================================================
+报告数据抽检 — 准出/打回判决
+报告：恒生科技与纳斯达克估值对比-20261024.md / facts-formulas
+======================================================================
+
+  ✅ 通过 [ 4] 纳斯达克 100 NDX · 2022-10-31 收盘         报告:     11405.57
+                                                    https://fred.stlouisfed.org/data/NASDAQ100 observation 2022-10-31: 11405.57 (偏差 0.00%)  |  KFH Capital October 2022 p3 / Refinitiv; sources.md: 11405.57 (偏差 0.00%)
+  ✅ 通过 [ 5] 纳斯达克 100 NDX · 2026-10-23 收盘         报告:     28957.53
+                                                    https://fred.stlouisfed.org/data/NASDAQ100 observation 2026-10-23: 28957.53 (偏差 0.00%)
+  ✅ 通过 [12] 恒生科技 PE-TTM · 倍数变化                   报告:       -35.41 %
+                                                    Decimal(20.63/31.94-1)*100; retained source extract: -35.41 (偏差 0.00%)
+  ✅ 通过 [15] 恒生科技 PB · 倍数变化                       报告:        20.02 %
+                                                    Decimal(2.092/1.743-1)*100; retained source extract: 20.02 (偏差 0.01%)
+  ✅ 通过 [14] 恒生科技 PB · 最新可得观察                     报告:         2.09 倍
+                                                    valuation-extract.json HSTECH 2026-10-23: 2.09 (偏差 0.00%)  |  baifenwei.com/index/hstech; rounded, possibly same upstream, NOT independent: 2.09 (偏差 0.10%)
+  ✅ 通过 [18] 纳指 100 PE-TTM · 倍数变化                 报告:        13.42 %
+                                                    Decimal(28.74/25.34-1)*100; date labels preserved: 13.42 (偏差 0.02%)
+  ✅ 通过 [29] 微软，FY2026Q4 · 盈利或现金指标                报告:       554.00 亿美元
+                                                    https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4 CFO USD55.4bn = 554亿美元: 554.00 (偏差 0.00%)  |  StockAnalysis Q4 2026 transcript, same originating disclosure; NOT independent: 554.00 (偏差 0.00%)
+  ✅ 通过 [32] 美国十年恒定期限国债收益率 · 变化方向                 报告:        86.00
+                                                    FRED DGS10 2026-10-22 minus 2022-10-31, percentage points *100 = bp: 86.00 (偏差 0.00%)
+
+----------------------------------------------------------------------
+  抽检总数: 8  |  通过: 8  |  警告: 0  |  不通过: 0
+
+【准出】所有抽检数据通过，报告可发布。
+======================================================================

@@ -1,0 +1,36 @@
+price_changes_pct
+  HSTECH_month_end: 35.7253
+  HSTECH_close_low: 38.1754
+  HSTECH_intraday_low: 42.3206
+  NDX_month_end: 153.8894
+  IXIC_month_end: 136.2121
+valuation_changes_pct
+  HSTECH_PE: -35.4101
+  HSTECH_PB: 20.0229
+  NDX_PE: 13.4175
+  NDX_PB: 39.2450
+  NDX_PE_low_week: 26.4965
+scenarios
+  HSTECH_bear: CAGR -4.1381%, total -19.0476%
+  HSTECH_base: CAGR 8.0801%, total 47.4788%
+  HSTECH_bull: CAGR 19.2296%, total 140.9462%
+  NDX_bear: CAGR -2.7869%, total -13.1793%
+  NDX_base: CAGR 9.4177%, total 56.8330%
+  NDX_bull: CAGR 19.3816%, total 142.4866%
+  HSTECH_base_start30: CAGR 0.6388%, total 3.2351%
+  HSTECH_base_start35: CAGR -2.4166%, total -11.5127%
+  NDX_base_start35: CAGR 5.3789%, total 29.9474%
+thresholds
+  HSTECH_PB_1.743: {'price': Decimal('3225.7664340344168260038240917782026768642447418738'), 'change_pct': Decimal('-16.682600382409177820267686424474187380497131931166')}
+  HSTECH_PB_1.9: {'price': Decimal('3516.3260038240917782026768642447418738049713193117'), 'change_pct': Decimal('-9.1778202676864244741873804971319311663479923518160')}
+  NDX_normalized_PE_25.34: {'price': Decimal('88.169798190675017397355601948503827418232428670842'), 'change_pct': Decimal('-11.830201809324982602644398051496172581767571329158')}
+  NDX_normalized_PE_22.72: {'price': Decimal('79.053583855254001391788448155880306193458594293667'), 'change_pct': Decimal('-20.946416144745998608211551844119693806541405706333')}
+mechanical_examples
+  earnings_minus_20_pe_rise_pct: 25.0000
+  eps_minus_20_and_pe_25_to_20_price_pct: -36.0000
+  earnings_yield_20_pct: 5.0000
+  earnings_yield_30_pct: 3.3333
+  cash_yield_20pe_50conversion_pct: 2.5000
+  cash_yield_30pe_90conversion_pct: 3.0000
+  required_growth_10pct_25to20_price_only_pct: 15.0204
+  ust_change_bp: 86.0000

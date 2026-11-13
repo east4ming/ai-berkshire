@@ -1,0 +1,41 @@
+[
+  {
+    "id": 36,
+    "label": "恒科：压力 · 第五年 PE",
+    "reported_value": 16.0,
+    "unit": "",
+    "raw_text": "| 恒科：压力 | 21 | 0% | 16 | 20% | -4.14% |",
+    "line_number": 174,
+    "kind": "assumption",
+    "fetched_value": "16",
+    "fetched_source": "inputs.json declared assumption",
+    "fetched_value2": null,
+    "fetched_source2": "Not a historical fact"
+  },
+  {
+    "id": 55,
+    "label": "纳指：中间假设 · 每单位盈利年增速",
+    "reported_value": 12.0,
+    "unit": "%",
+    "raw_text": "| 纳指：中间假设 | 29 | +12% | 25 | 20% | +9.42% |",
+    "line_number": 178,
+    "kind": "assumption",
+    "fetched_value": "12.00",
+    "fetched_source": "inputs.json declared assumption",
+    "fetched_value2": null,
+    "fetched_source2": "Not consensus or a forecast certification"
+  },
+  {
+    "id": 70,
+    "label": "纳指中间假设 · 起始 PE",
+    "reported_value": 29.0,
+    "unit": "",
+    "raw_text": "| 纳指中间假设 | 29 | +9.42% |",
+    "line_number": 194,
+    "kind": "assumption",
+    "fetched_value": "29",
+    "fetched_source": "inputs.json rounded starting multiple assumption",
+    "fetched_value2": null,
+    "fetched_source2": "Not independently reconstructed economic PE"
+  }
+]

@@ -1,0 +1,1406 @@
+[
+  {
+    "company": "Tencent",
+    "scenario": "bear",
+    "input": {
+      "schema_version": 1,
+      "name": "Tencent bear core component reference",
+      "synthetic": false,
+      "valuation_date": "2026-10-23",
+      "data_cutoff": "2026-10-23",
+      "timing": "annual_end_of_year",
+      "cash_flow_type": "FCFF",
+      "risk_adjustment": "risk_adjusted",
+      "cash_flow_basis": "nominal",
+      "cash_flow_currency": "CNY",
+      "quote_currency": "HKD",
+      "value_scale": "1000000000",
+      "quote_currency_per_cashflow_currency": "1.16691560866318147871545929798356982823002240",
+      "ordinary_shares": "9.21",
+      "shares_scale": "1000000000",
+      "shares_as_of": "2026-10-23",
+      "ordinary_shares_per_quote_unit": "1",
+      "equity_bridge": {
+        "excess_cash": {
+          "amount": "0",
+          "excluded_from_cash_flows": true,
+          "rationale": "Component-only mathematical check; full bridge in model_inputs.json"
+        },
+        "nonoperating_investments": {
+          "amount": "0",
+          "excluded_from_cash_flows": true,
+          "rationale": "No investment income inside core FCFF"
+        },
+        "debt": "0",
+        "noncontrolling_interests": "0",
+        "other_equity_claims": "0"
+      },
+      "accounting_notes": {
+        "sbc": "Future new-grant economic cost retained in margin; existing rights represented by approximate economic share denominator. This is not a legal cap-table audit.",
+        "buybacks": "Static shares; no extra repurchase return. Holding model records dividends and retained cash separately.",
+        "leases": "Cash rent included in operating margins/reinvestment; same lease debt not deducted again.",
+        "cash_flow_adjustments": "Cash-taxed operating profit less net reinvestment; operating minority proxy already applied for Tencent. Nonoperating income excluded.",
+        "discount_rate": "Research assumption: CNY nominal risk-adjusted WACC; official 10Y reference1.64%, premiums and capital weights are assumptions.",
+        "terminal": "Next-year cash retains net reinvestment; growth times year10 cash, no second growth multiplication."
+      },
+      "scenarios": [
+        {
+          "name": "bear",
+          "probability": "1",
+          "discount_rate": {
+            "value": "0.085",
+            "kind": "wacc",
+            "currency": "CNY",
+            "basis": "nominal"
+          },
+          "cash_flows": [
+            {
+              "year": 1,
+              "amount": "105.943400"
+            },
+            {
+              "year": 2,
+              "amount": "107.343110"
+            },
+            {
+              "year": 3,
+              "amount": "108.213200"
+            },
+            {
+              "year": 4,
+              "amount": "113.262346938775510204081632653061224489795919"
+            },
+            {
+              "year": 5,
+              "amount": "118.249730612244897959183673469387755102040816"
+            },
+            {
+              "year": 6,
+              "amount": "123.175351020408163265306122448979591836734694"
+            },
+            {
+              "year": 7,
+              "amount": "128.039208163265306122448979591836734693877550"
+            },
+            {
+              "year": 8,
+              "amount": "132.841302040816326530612244897959183673469387"
+            },
+            {
+              "year": 9,
+              "amount": "137.581632653061224489795918367346938775510203"
+            },
+            {
+              "year": 10,
+              "amount": "142.260200"
+            }
+          ],
+          "terminal": {
+            "method": "next_year_cash_flow",
+            "growth_rate": "0.015",
+            "currency": "CNY",
+            "basis": "nominal",
+            "next_year_cash_flow": "144.394103000"
+          }
+        }
+      ]
+    },
+    "output": {
+      "schema_version": 1,
+      "name": "Tencent bear core component reference",
+      "synthetic": false,
+      "notice": "Arithmetic and declared conventions checked; evidence and economic assumptions remain unverified by this engine",
+      "valuation_date": "2026-10-23",
+      "data_cutoff": "2026-10-23",
+      "cash_flow_type": "FCFF",
+      "risk_adjustment": "risk_adjusted",
+      "cash_flow_basis": "nominal",
+      "timing": "annual_end_of_year",
+      "units": {
+        "values": "1000000000 CNY",
+        "prices": "HKD per quoted unit",
+        "quote_currency_per_cashflow_currency": "1.16691560866318147871545929798356982823002240",
+        "ordinary_shares": "9210000000.00",
+        "ordinary_shares_per_quote_unit": "1"
+      },
+      "scenarios": [
+        {
+          "name": "bear",
+          "probability": "1",
+          "discount_rate": "0.085",
+          "terminal_growth_rate": "0.015",
+          "cash_flow_present_values": [
+            {
+              "year": 1,
+              "cash_flow": "105.943400",
+              "discount_factor": "0.92165898617511520737327188940092165898617511520737",
+              "present_value": "97.643686635944700460829493087557603686635944700461"
+            },
+            {
+              "year": 2,
+              "cash_flow": "107.343110",
+              "discount_factor": "0.84945528679734120495232432202849922487205079742615",
+              "present_value": "91.183172290768544670729894455180615430355284673703"
+            },
+            {
+              "year": 3,
+              "cash_flow": "108.213200",
+              "discount_factor": "0.78290809843072922115421596500322509204797308518539",
+              "present_value": "84.720990637104187354605403064086997530805721061784"
+            },
+            {
+              "year": 4,
+              "cash_flow": "113.262346938775510204081632653061224489795919",
+              "discount_factor": "0.72157428426795319922047554378177427838522864994045",
+              "present_value": "81.727196926855538825709230592550997709543942273144"
+            },
+            {
+              "year": 5,
+              "cash_flow": "118.249730612244897959183673469387755102040816",
+              "discount_factor": "0.66504542328843612831380234449933113215228446999120",
+              "present_value": "78.641442148763951614803173314781673904131221825526"
+            },
+            {
+              "year": 6,
+              "cash_flow": "123.175351020408163265306122448979591836734694",
+              "discount_factor": "0.61294509058842039475926483363993652732929444238820",
+              "present_value": "75.499726689464562141427340972479561486607681054271"
+            },
+            {
+              "year": 7,
+              "cash_flow": "128.039208163265306122448979591836734693877550",
+              "discount_factor": "0.56492635077273769102236390197229173025741423261586",
+              "present_value": "72.332722623504395545801195075483324470340256794776"
+            },
+            {
+              "year": 8,
+              "cash_flow": "132.841302040816326530612244897959183673469387",
+              "discount_factor": "0.52066944771680893181784691426017670991466749549849",
+              "present_value": "69.166407367573639980434824470589829232290808398375"
+            },
+            {
+              "year": 9,
+              "cash_flow": "137.581632653061224489795918367346938775510203",
+              "discount_factor": "0.47987967531503127356483586567758222111950921244100",
+              "present_value": "66.022629206862925117088591601335113136268802657906"
+            },
+            {
+              "year": 10,
+              "cash_flow": "142.260200",
+              "discount_factor": "0.44228541503689518300906531398855504250646010363226",
+              "present_value": "62.919611600231716113906233381074638057977515634746"
+            }
+          ],
+          "explicit_cash_flow_pv": "779.85758612707416182533538001512035464495717907470",
+          "terminal_next_year_cash_flow": "144.394103000",
+          "terminal_value_at_horizon": "2062.772900",
+          "terminal_present_value": "912.33436820335988365164038402558225184067397670381",
+          "terminal_share_of_operating_value": "0.53914354448302057176388161612901085496289545289412",
+          "operating_present_value": "1692.1919543304340454769757640407026064856311557785",
+          "enterprise_value": "1692.1919543304340454769757640407026064856311557785",
+          "equity_bridge_additions": "0",
+          "equity_bridge_deductions": "0",
+          "equity_value": "1692.1919543304340454769757640407026064856311557785",
+          "quote_currency_per_ordinary_share": "214.40230231948284903636536830146128324602513179523",
+          "quote_currency_per_quote_unit": "214.40230231948284903636536830146128324602513179523",
+          "warnings": []
+        }
+      ],
+      "probability_weighted_present_value": {
+        "operating_present_value": "1692.1919543304340454769757640407026064856311557785",
+        "equity_value": "1692.1919543304340454769757640407026064856311557785",
+        "terminal_present_value": "912.33436820335988365164038402558225184067397670381",
+        "quote_currency_per_ordinary_share": "214.40230231948284903636536830146128324602513179523",
+        "quote_currency_per_quote_unit": "214.40230231948284903636536830146128324602513179523",
+        "enterprise_value": "1692.1919543304340454769757640407026064856311557785",
+        "terminal_share_of_operating_value": "0.53914354448302057176388161612901085496289545289412"
+      },
+      "accounting_notes_unverified": {
+        "sbc": "Future new-grant economic cost retained in margin; existing rights represented by approximate economic share denominator. This is not a legal cap-table audit.",
+        "buybacks": "Static shares; no extra repurchase return. Holding model records dividends and retained cash separately.",
+        "leases": "Cash rent included in operating margins/reinvestment; same lease debt not deducted again.",
+        "cash_flow_adjustments": "Cash-taxed operating profit less net reinvestment; operating minority proxy already applied for Tencent. Nonoperating income excluded.",
+        "discount_rate": "Research assumption: CNY nominal risk-adjusted WACC; official 10Y reference1.64%, premiums and capital weights are assumptions.",
+        "terminal": "Next-year cash retains net reinvestment; growth times year10 cash, no second growth multiplication."
+      },
+      "limitations": [
+        "No automated verification of forecasts, sources, SBC, buybacks, certainty equivalents or financing feasibility.",
+        "Annual end-of-year cash flows only; no stub periods, mid-year convention, term structure, multi-currency segments, funding rounds, liquidation or changing share count.",
+        "Bridge amounts are present-value amounts in cash-flow currency; excess-asset declarations require an external accounting review."
+      ]
+    },
+    "standalone_component_value": "1692.19195433043404547697576404070260648563116",
+    "absolute_difference": "4.2215E-42",
+    "status": "PASS"
+  },
+  {
+    "company": "Tencent",
+    "scenario": "base",
+    "input": {
+      "schema_version": 1,
+      "name": "Tencent base core component reference",
+      "synthetic": false,
+      "valuation_date": "2026-10-23",
+      "data_cutoff": "2026-10-23",
+      "timing": "annual_end_of_year",
+      "cash_flow_type": "FCFF",
+      "risk_adjustment": "risk_adjusted",
+      "cash_flow_basis": "nominal",
+      "cash_flow_currency": "CNY",
+      "quote_currency": "HKD",
+      "value_scale": "1000000000",
+      "quote_currency_per_cashflow_currency": "1.16691560866318147871545929798356982823002240",
+      "ordinary_shares": "9.21",
+      "shares_scale": "1000000000",
+      "shares_as_of": "2026-10-23",
+      "ordinary_shares_per_quote_unit": "1",
+      "equity_bridge": {
+        "excess_cash": {
+          "amount": "0",
+          "excluded_from_cash_flows": true,
+          "rationale": "Component-only mathematical check; full bridge in model_inputs.json"
+        },
+        "nonoperating_investments": {
+          "amount": "0",
+          "excluded_from_cash_flows": true,
+          "rationale": "No investment income inside core FCFF"
+        },
+        "debt": "0",
+        "noncontrolling_interests": "0",
+        "other_equity_claims": "0"
+      },
+      "accounting_notes": {
+        "sbc": "Future new-grant economic cost retained in margin; existing rights represented by approximate economic share denominator. This is not a legal cap-table audit.",
+        "buybacks": "Static shares; no extra repurchase return. Holding model records dividends and retained cash separately.",
+        "leases": "Cash rent included in operating margins/reinvestment; same lease debt not deducted again.",
+        "cash_flow_adjustments": "Cash-taxed operating profit less net reinvestment; operating minority proxy already applied for Tencent. Nonoperating income excluded.",
+        "discount_rate": "Research assumption: CNY nominal risk-adjusted WACC; official 10Y reference1.64%, premiums and capital weights are assumptions.",
+        "terminal": "Next-year cash retains net reinvestment; growth times year10 cash, no second growth multiplication."
+      },
+      "scenarios": [
+        {
+          "name": "base",
+          "probability": "1",
+          "discount_rate": {
+            "value": "0.085",
+            "kind": "wacc",
+            "currency": "CNY",
+            "basis": "nominal"
+          },
+          "cash_flows": [
+            {
+              "year": 1,
+              "amount": "142.745200"
+            },
+            {
+              "year": 2,
+              "amount": "166.8278750"
+            },
+            {
+              "year": 3,
+              "amount": "191.478000"
+            },
+            {
+              "year": 4,
+              "amount": "209.084489795918367346938775510204081632653061"
+            },
+            {
+              "year": 5,
+              "amount": "226.845387755102040816326530612244897959183673"
+            },
+            {
+              "year": 6,
+              "amount": "244.760693877551020408163265306122448979591835"
+            },
+            {
+              "year": 7,
+              "amount": "262.830408163265306122448979591836734693877552"
+            },
+            {
+              "year": 8,
+              "amount": "281.054530612244897959183673469387755102040817"
+            },
+            {
+              "year": 9,
+              "amount": "299.433061224489795918367346938775510204081633"
+            },
+            {
+              "year": 10,
+              "amount": "317.966000"
+            }
+          ],
+          "terminal": {
+            "method": "next_year_cash_flow",
+            "growth_rate": "0.025",
+            "currency": "CNY",
+            "basis": "nominal",
+            "next_year_cash_flow": "325.915150000"
+          }
+        }
+      ]
+    },
+    "output": {
+      "schema_version": 1,
+      "name": "Tencent base core component reference",
+      "synthetic": false,
+      "notice": "Arithmetic and declared conventions checked; evidence and economic assumptions remain unverified by this engine",
+      "valuation_date": "2026-10-23",
+      "data_cutoff": "2026-10-23",
+      "cash_flow_type": "FCFF",
+      "risk_adjustment": "risk_adjusted",
+      "cash_flow_basis": "nominal",
+      "timing": "annual_end_of_year",
+      "units": {
+        "values": "1000000000 CNY",
+        "prices": "HKD per quoted unit",
+        "quote_currency_per_cashflow_currency": "1.16691560866318147871545929798356982823002240",
+        "ordinary_shares": "9210000000.00",
+        "ordinary_shares_per_quote_unit": "1"
+      },
+      "scenarios": [
+        {
+          "name": "base",
+          "probability": "1",
+          "discount_rate": "0.085",
+          "terminal_growth_rate": "0.025",
+          "cash_flow_present_values": [
+            {
+              "year": 1,
+              "cash_flow": "142.745200",
+              "discount_factor": "0.92165898617511520737327188940092165898617511520737",
+              "present_value": "131.56239631336405529953917050691244239631336405530"
+            },
+            {
+              "year": 2,
+              "cash_flow": "166.8278750",
+              "discount_factor": "0.84945528679734120495232432202849922487205079742615",
+              "present_value": "141.71282040391598887213574295483021512455138142666"
+            },
+            {
+              "year": 3,
+              "cash_flow": "191.478000",
+              "discount_factor": "0.78290809843072922115421596500322509204797308518539",
+              "present_value": "149.90967687131916980816696454688753417516179040513"
+            },
+            {
+              "year": 4,
+              "cash_flow": "209.084489795918367346938775510204081632653061",
+              "discount_factor": "0.72157428426795319922047554378177427838522864994045",
+              "present_value": "150.86999107601995998901352678817157000929880495334"
+            },
+            {
+              "year": 5,
+              "cash_flow": "226.845387755102040816326530612244897959183673",
+              "discount_factor": "0.66504542328843612831380234449933113215228446999120",
+              "present_value": "150.86248692062126251278200227151292347495253953615"
+            },
+            {
+              "year": 6,
+              "cash_flow": "244.760693877551020408163265306122448979591835",
+              "discount_factor": "0.61294509058842039475926483363993652732929444238820",
+              "present_value": "150.02486568126014329665361608996277785446360045181"
+            },
+            {
+              "year": 7,
+              "cash_flow": "262.830408163265306122448979591836734693877552",
+              "discount_factor": "0.56492635077273769102236390197229173025741423261586",
+              "present_value": "148.47982335578263620393485225901089354181343123600"
+            },
+            {
+              "year": 8,
+              "cash_flow": "281.054530612244897959183673469387755102040817",
+              "discount_factor": "0.52066944771680893181784691426017670991466749549849",
+              "present_value": "146.33650723218452031970921325312808797926426029079"
+            },
+            {
+              "year": 9,
+              "cash_flow": "299.433061224489795918367346938775510204081633",
+              "discount_factor": "0.47987967531503127356483586567758222111950921244100",
+              "present_value": "143.69184019899404393109094051248847788477725439018"
+            },
+            {
+              "year": 10,
+              "cash_flow": "317.966000",
+              "discount_factor": "0.44228541503689518300906531398855504250646010363226",
+              "present_value": "140.63172427762141376066046162768489264560909331153"
+            }
+          ],
+          "explicit_cash_flow_pv": "1454.0821323310831939936864908105898150862055200569",
+          "terminal_next_year_cash_flow": "325.915150000",
+          "terminal_value_at_horizon": "5431.9191666666666666666666666666666666666666666667",
+          "terminal_present_value": "2402.4586230760324850779495528062835826958220107387",
+          "terminal_share_of_operating_value": "0.62295688687008753497471635418937986272703873377213",
+          "operating_present_value": "3856.5407554071156790716360436168733977820275307956",
+          "enterprise_value": "3856.5407554071156790716360436168733977820275307956",
+          "equity_bridge_additions": "0",
+          "equity_bridge_deductions": "0",
+          "equity_value": "3856.5407554071156790716360436168733977820275307956",
+          "quote_currency_per_ordinary_share": "488.62731845062541596824500094073839958956341024476",
+          "quote_currency_per_quote_unit": "488.62731845062541596824500094073839958956341024476",
+          "warnings": []
+        }
+      ],
+      "probability_weighted_present_value": {
+        "operating_present_value": "3856.5407554071156790716360436168733977820275307956",
+        "equity_value": "3856.5407554071156790716360436168733977820275307956",
+        "terminal_present_value": "2402.4586230760324850779495528062835826958220107387",
+        "quote_currency_per_ordinary_share": "488.62731845062541596824500094073839958956341024476",
+        "quote_currency_per_quote_unit": "488.62731845062541596824500094073839958956341024476",
+        "enterprise_value": "3856.5407554071156790716360436168733977820275307956",
+        "terminal_share_of_operating_value": "0.62295688687008753497471635418937986272703873377213"
+      },
+      "accounting_notes_unverified": {
+        "sbc": "Future new-grant economic cost retained in margin; existing rights represented by approximate economic share denominator. This is not a legal cap-table audit.",
+        "buybacks": "Static shares; no extra repurchase return. Holding model records dividends and retained cash separately.",
+        "leases": "Cash rent included in operating margins/reinvestment; same lease debt not deducted again.",
+        "cash_flow_adjustments": "Cash-taxed operating profit less net reinvestment; operating minority proxy already applied for Tencent. Nonoperating income excluded.",
+        "discount_rate": "Research assumption: CNY nominal risk-adjusted WACC; official 10Y reference1.64%, premiums and capital weights are assumptions.",
+        "terminal": "Next-year cash retains net reinvestment; growth times year10 cash, no second growth multiplication."
+      },
+      "limitations": [
+        "No automated verification of forecasts, sources, SBC, buybacks, certainty equivalents or financing feasibility.",
+        "Annual end-of-year cash flows only; no stub periods, mid-year convention, term structure, multi-currency segments, funding rounds, liquidation or changing share count.",
+        "Bridge amounts are present-value amounts in cash-flow currency; excess-asset declarations require an external accounting review."
+      ]
+    },
+    "standalone_component_value": "3856.54075540711567907163604361687339778202752",
+    "absolute_difference": "1.07956E-41",
+    "status": "PASS"
+  },
+  {
+    "company": "Tencent",
+    "scenario": "bull",
+    "input": {
+      "schema_version": 1,
+      "name": "Tencent bull core component reference",
+      "synthetic": false,
+      "valuation_date": "2026-10-23",
+      "data_cutoff": "2026-10-23",
+      "timing": "annual_end_of_year",
+      "cash_flow_type": "FCFF",
+      "risk_adjustment": "risk_adjusted",
+      "cash_flow_basis": "nominal",
+      "cash_flow_currency": "CNY",
+      "quote_currency": "HKD",
+      "value_scale": "1000000000",
+      "quote_currency_per_cashflow_currency": "1.16691560866318147871545929798356982823002240",
+      "ordinary_shares": "9.21",
+      "shares_scale": "1000000000",
+      "shares_as_of": "2026-10-23",
+      "ordinary_shares_per_quote_unit": "1",
+      "equity_bridge": {
+        "excess_cash": {
+          "amount": "0",
+          "excluded_from_cash_flows": true,
+          "rationale": "Component-only mathematical check; full bridge in model_inputs.json"
+        },
+        "nonoperating_investments": {
+          "amount": "0",
+          "excluded_from_cash_flows": true,
+          "rationale": "No investment income inside core FCFF"
+        },
+        "debt": "0",
+        "noncontrolling_interests": "0",
+        "other_equity_claims": "0"
+      },
+      "accounting_notes": {
+        "sbc": "Future new-grant economic cost retained in margin; existing rights represented by approximate economic share denominator. This is not a legal cap-table audit.",
+        "buybacks": "Static shares; no extra repurchase return. Holding model records dividends and retained cash separately.",
+        "leases": "Cash rent included in operating margins/reinvestment; same lease debt not deducted again.",
+        "cash_flow_adjustments": "Cash-taxed operating profit less net reinvestment; operating minority proxy already applied for Tencent. Nonoperating income excluded.",
+        "discount_rate": "Research assumption: CNY nominal risk-adjusted WACC; official 10Y reference1.64%, premiums and capital weights are assumptions.",
+        "terminal": "Next-year cash retains net reinvestment; growth times year10 cash, no second growth multiplication."
+      },
+      "scenarios": [
+        {
+          "name": "bull",
+          "probability": "1",
+          "discount_rate": {
+            "value": "0.085",
+            "kind": "wacc",
+            "currency": "CNY",
+            "basis": "nominal"
+          },
+          "cash_flows": [
+            {
+              "year": 1,
+              "amount": "166.366640"
+            },
+            {
+              "year": 2,
+              "amount": "203.894000"
+            },
+            {
+              "year": 3,
+              "amount": "243.237200"
+            },
+            {
+              "year": 4,
+              "amount": "269.918455510204081632653061224489795918367347"
+            },
+            {
+              "year": 5,
+              "amount": "296.840587755102040816326530612244897959183672"
+            },
+            {
+              "year": 6,
+              "amount": "324.003596734693877551020408163265306122448978"
+            },
+            {
+              "year": 7,
+              "amount": "351.407482448979591836734693877551020408163267"
+            },
+            {
+              "year": 8,
+              "amount": "379.052244897959183673469387755102040816326532"
+            },
+            {
+              "year": 9,
+              "amount": "406.937884081632653061224489795918367346938776"
+            },
+            {
+              "year": 10,
+              "amount": "435.064400"
+            }
+          ],
+          "terminal": {
+            "method": "next_year_cash_flow",
+            "growth_rate": "0.03",
+            "currency": "CNY",
+            "basis": "nominal",
+            "next_year_cash_flow": "448.11633200"
+          }
+        }
+      ]
+    },
+    "output": {
+      "schema_version": 1,
+      "name": "Tencent bull core component reference",
+      "synthetic": false,
+      "notice": "Arithmetic and declared conventions checked; evidence and economic assumptions remain unverified by this engine",
+      "valuation_date": "2026-10-23",
+      "data_cutoff": "2026-10-23",
+      "cash_flow_type": "FCFF",
+      "risk_adjustment": "risk_adjusted",
+      "cash_flow_basis": "nominal",
+      "timing": "annual_end_of_year",
+      "units": {
+        "values": "1000000000 CNY",
+        "prices": "HKD per quoted unit",
+        "quote_currency_per_cashflow_currency": "1.16691560866318147871545929798356982823002240",
+        "ordinary_shares": "9210000000.00",
+        "ordinary_shares_per_quote_unit": "1"
+      },
+      "scenarios": [
+        {
+          "name": "bull",
+          "probability": "1",
+          "discount_rate": "0.085",
+          "terminal_growth_rate": "0.03",
+          "cash_flow_present_values": [
+            {
+              "year": 1,
+              "cash_flow": "166.366640",
+              "discount_factor": "0.92165898617511520737327188940092165898617511520737",
+              "present_value": "153.33330875576036866359447004608294930875576036866"
+            },
+            {
+              "year": 2,
+              "cash_flow": "203.894000",
+              "discount_factor": "0.84945528679734120495232432202849922487205079742615",
+              "present_value": "173.19883624625708764254921531567882095606192529041"
+            },
+            {
+              "year": 3,
+              "cash_flow": "243.237200",
+              "discount_factor": "0.78290809843072922115421596500322509204797308518539",
+              "present_value": "190.43237371961496971173225952268246235949123891586"
+            },
+            {
+              "year": 4,
+              "cash_flow": "269.918455510204081632653061224489795918367347",
+              "discount_factor": "0.72157428426795319922047554378177427838522864994045",
+              "present_value": "194.76621634548687858056796274514481108546768878500"
+            },
+            {
+              "year": 5,
+              "cash_flow": "296.840587755102040816326530612244897959183672",
+              "discount_factor": "0.66504542328843612831380234449933113215228446999120",
+              "present_value": "197.41247433278000700133226013521250593617812080503"
+            },
+            {
+              "year": 6,
+              "cash_flow": "324.003596734693877551020408163265306122448978",
+              "discount_factor": "0.61294509058842039475926483363993652732929444238820",
+              "present_value": "198.59641395152096919200940554493700021007051090608"
+            },
+            {
+              "year": 7,
+              "cash_flow": "351.407482448979591836734693877551020408163267",
+              "discount_factor": "0.56492635077273769102236390197229173025741423261586",
+              "present_value": "198.51934669413690863642268412247186750306723124413"
+            },
+            {
+              "year": 8,
+              "cash_flow": "379.052244897959183673469387755102040816326532",
+              "discount_factor": "0.52066944771680893181784691426017670991466749549849",
+              "present_value": "197.36092300683701436029977005767852514699329883870"
+            },
+            {
+              "year": 9,
+              "cash_flow": "406.937884081632653061224489795918367346938776",
+              "discount_factor": "0.47987967531503127356483586567758222111950921244100",
+              "present_value": "195.28121968647971090442444590980360596595092260058"
+            },
+            {
+              "year": 10,
+              "cash_flow": "435.064400",
+              "discount_factor": "0.44228541503689518300906531398855504250646010363226",
+              "present_value": "192.42263872177778065872919539124230643504756111071"
+            }
+          ],
+          "explicit_cash_flow_pv": "1891.3237514606516953516616687909348549070842588651",
+          "terminal_next_year_cash_flow": "448.11633200",
+          "terminal_value_at_horizon": "8147.5696727272727272727272727272727272727272727273",
+          "terminal_present_value": "3603.5512342442020741543831136905377386927088717096",
+          "terminal_share_of_operating_value": "0.65580222363911658761275814493693047140240735383277",
+          "operating_present_value": "5494.8749857048537695060447824814725935997931305747",
+          "enterprise_value": "5494.8749857048537695060447824814725935997931305747",
+          "equity_bridge_additions": "0",
+          "equity_bridge_deductions": "0",
+          "equity_value": "5494.8749857048537695060447824814725935997931305747",
+          "quote_currency_per_ordinary_share": "696.20579679390554433991002187180873206621668425119",
+          "quote_currency_per_quote_unit": "696.20579679390554433991002187180873206621668425119",
+          "warnings": []
+        }
+      ],
+      "probability_weighted_present_value": {
+        "operating_present_value": "5494.8749857048537695060447824814725935997931305747",
+        "equity_value": "5494.8749857048537695060447824814725935997931305747",
+        "terminal_present_value": "3603.5512342442020741543831136905377386927088717096",
+        "quote_currency_per_ordinary_share": "696.20579679390554433991002187180873206621668425119",
+        "quote_currency_per_quote_unit": "696.20579679390554433991002187180873206621668425119",
+        "enterprise_value": "5494.8749857048537695060447824814725935997931305747",
+        "terminal_share_of_operating_value": "0.65580222363911658761275814493693047140240735383277"
+      },
+      "accounting_notes_unverified": {
+        "sbc": "Future new-grant economic cost retained in margin; existing rights represented by approximate economic share denominator. This is not a legal cap-table audit.",
+        "buybacks": "Static shares; no extra repurchase return. Holding model records dividends and retained cash separately.",
+        "leases": "Cash rent included in operating margins/reinvestment; same lease debt not deducted again.",
+        "cash_flow_adjustments": "Cash-taxed operating profit less net reinvestment; operating minority proxy already applied for Tencent. Nonoperating income excluded.",
+        "discount_rate": "Research assumption: CNY nominal risk-adjusted WACC; official 10Y reference1.64%, premiums and capital weights are assumptions.",
+        "terminal": "Next-year cash retains net reinvestment; growth times year10 cash, no second growth multiplication."
+      },
+      "limitations": [
+        "No automated verification of forecasts, sources, SBC, buybacks, certainty equivalents or financing feasibility.",
+        "Annual end-of-year cash flows only; no stub periods, mid-year convention, term structure, multi-currency segments, funding rounds, liquidation or changing share count.",
+        "Bridge amounts are present-value amounts in cash-flow currency; excess-asset declarations require an external accounting review."
+      ]
+    },
+    "standalone_component_value": "5494.87498570485376950604478248147259359979312",
+    "absolute_difference": "1.05747E-41",
+    "status": "PASS"
+  },
+  {
+    "company": "Kuaishou",
+    "scenario": "bear",
+    "input": {
+      "schema_version": 1,
+      "name": "Kuaishou bear core component reference",
+      "synthetic": false,
+      "valuation_date": "2026-10-23",
+      "data_cutoff": "2026-10-23",
+      "timing": "annual_end_of_year",
+      "cash_flow_type": "FCFF",
+      "risk_adjustment": "risk_adjusted",
+      "cash_flow_basis": "nominal",
+      "cash_flow_currency": "CNY",
+      "quote_currency": "HKD",
+      "value_scale": "1000000000",
+      "quote_currency_per_cashflow_currency": "1.16691560866318147871545929798356982823002240",
+      "ordinary_shares": "4.50",
+      "shares_scale": "1000000000",
+      "shares_as_of": "2026-10-23",
+      "ordinary_shares_per_quote_unit": "1",
+      "equity_bridge": {
+        "excess_cash": {
+          "amount": "0",
+          "excluded_from_cash_flows": true,
+          "rationale": "Component-only mathematical check; full bridge in model_inputs.json"
+        },
+        "nonoperating_investments": {
+          "amount": "0",
+          "excluded_from_cash_flows": true,
+          "rationale": "No investment income inside core FCFF"
+        },
+        "debt": "0",
+        "noncontrolling_interests": "0",
+        "other_equity_claims": "0"
+      },
+      "accounting_notes": {
+        "sbc": "Future new-grant economic cost retained in margin; existing rights represented by approximate economic share denominator. This is not a legal cap-table audit.",
+        "buybacks": "Static shares; no extra repurchase return. Holding model records dividends and retained cash separately.",
+        "leases": "Cash rent included in operating margins/reinvestment; same lease debt not deducted again.",
+        "cash_flow_adjustments": "Cash-taxed operating profit less net reinvestment; operating minority proxy already applied for Tencent. Nonoperating income excluded.",
+        "discount_rate": "Research assumption: CNY nominal risk-adjusted WACC; official 10Y reference1.64%, premiums and capital weights are assumptions.",
+        "terminal": "Next-year cash retains net reinvestment; growth times year10 cash, no second growth multiplication."
+      },
+      "scenarios": [
+        {
+          "name": "bear",
+          "probability": "1",
+          "discount_rate": {
+            "value": "0.105",
+            "kind": "wacc",
+            "currency": "CNY",
+            "basis": "nominal"
+          },
+          "cash_flows": [
+            {
+              "year": 1,
+              "amount": "4.8280"
+            },
+            {
+              "year": 2,
+              "amount": "4.26680"
+            },
+            {
+              "year": 3,
+              "amount": "3.7368"
+            },
+            {
+              "year": 4,
+              "amount": "3.23985306122448979591836734693877551020408160"
+            },
+            {
+              "year": 5,
+              "amount": "2.77346938775510204081632653061224489795918368"
+            },
+            {
+              "year": 6,
+              "amount": "2.33764897959183673469387755102040816326530610"
+            },
+            {
+              "year": 7,
+              "amount": "1.93239183673469387755102040816326530612244900"
+            },
+            {
+              "year": 8,
+              "amount": "1.55769795918367346938775510204081632653061224"
+            },
+            {
+              "year": 9,
+              "amount": "1.21356734693877551020408163265306122448979594"
+            },
+            {
+              "year": 10,
+              "amount": "0.9000"
+            }
+          ],
+          "terminal": {
+            "method": "next_year_cash_flow",
+            "growth_rate": "0",
+            "currency": "CNY",
+            "basis": "nominal",
+            "next_year_cash_flow": "0.9000"
+          }
+        }
+      ]
+    },
+    "output": {
+      "schema_version": 1,
+      "name": "Kuaishou bear core component reference",
+      "synthetic": false,
+      "notice": "Arithmetic and declared conventions checked; evidence and economic assumptions remain unverified by this engine",
+      "valuation_date": "2026-10-23",
+      "data_cutoff": "2026-10-23",
+      "cash_flow_type": "FCFF",
+      "risk_adjustment": "risk_adjusted",
+      "cash_flow_basis": "nominal",
+      "timing": "annual_end_of_year",
+      "units": {
+        "values": "1000000000 CNY",
+        "prices": "HKD per quoted unit",
+        "quote_currency_per_cashflow_currency": "1.16691560866318147871545929798356982823002240",
+        "ordinary_shares": "4500000000.00",
+        "ordinary_shares_per_quote_unit": "1"
+      },
+      "scenarios": [
+        {
+          "name": "bear",
+          "probability": "1",
+          "discount_rate": "0.105",
+          "terminal_growth_rate": "0",
+          "cash_flow_present_values": [
+            {
+              "year": 1,
+              "cash_flow": "4.8280",
+              "discount_factor": "0.90497737556561085972850678733031674208144796380090",
+              "present_value": "4.3692307692307692307692307692307692307692307692308"
+            },
+            {
+              "year": 2,
+              "cash_flow": "4.26680",
+              "discount_factor": "0.81898405028562068753711021477856718740402530660715",
+              "present_value": "3.4944411457586863495833418644171904752154951782314"
+            },
+            {
+              "year": 3,
+              "cash_flow": "3.7368",
+              "discount_factor": "0.74116203645757528283901376903037754516201385213317",
+              "present_value": "2.7695742978346673169128266521127148107614133626512"
+            },
+            {
+              "year": 4,
+              "cash_flow": "3.23985306122448979591836734693877551020408160",
+              "discount_factor": "0.67073487462224007496743327514061316304254647251871",
+              "present_value": "2.1730824368148888606793865559539333336706279708019"
+            },
+            {
+              "year": 5,
+              "cash_flow": "2.77346938775510204081632653061224489795918368",
+              "discount_factor": "0.60699988653596386874880839379241010230094703395358",
+              "present_value": "1.6834956036783161176114910350283374061775245328272"
+            },
+            {
+              "year": 6,
+              "cash_flow": "2.33764897959183673469387755102040816326530610",
+              "discount_factor": "0.54932116428594015271385375003838018307778012122496",
+              "present_value": "1.2841200591612277062158741842325765386654634250089"
+            },
+            {
+              "year": 7,
+              "cash_flow": "1.93239183673469387755102040816326530612244900",
+              "discount_factor": "0.49712322559813588480891742084921283536450689703616",
+              "present_value": "0.96063686299705739085875358390680786907604363179930"
+            },
+            {
+              "year": 8,
+              "cash_flow": "1.55769795918367346938775510204081632653061224",
+              "discount_factor": "0.44988527203451211294924653470516998675520986157119",
+              "present_value": "0.70078537011495128464285163477037654312371947016620"
+            },
+            {
+              "year": 9,
+              "cash_flow": "1.21356734693877551020408163265306122448979594",
+              "discount_factor": "0.40713599279141367687714618525354749932598177517755",
+              "present_value": "0.49408694661516032679110454034418676199836003053351"
+            },
+            {
+              "year": 10,
+              "cash_flow": "0.9000",
+              "discount_factor": "0.36844886225467301074854858393986199034025500016067",
+              "present_value": "0.33160397602920570967369372554587579130622950014461"
+            }
+          ],
+          "explicit_cash_flow_pv": "18.261057468234930293738554545542768760764107871395",
+          "terminal_next_year_cash_flow": "0.9000",
+          "terminal_value_at_horizon": "8.5714285714285714285714285714285714285714285714286",
+          "terminal_present_value": "3.1581331050400543778447021480559599172021857156629",
+          "terminal_share_of_operating_value": "0.14744409198079128144626703889910838521615820864911",
+          "operating_present_value": "21.419190573274984671583256693598728677966293587058",
+          "enterprise_value": "21.419190573274984671583256693598728677966293587058",
+          "equity_bridge_additions": "0",
+          "equity_bridge_deductions": "0",
+          "equity_value": "21.419190573274984671583256693598728677966293587058",
+          "quote_currency_per_ordinary_share": "5.5543084010857461703342193317978613491531546913444",
+          "quote_currency_per_quote_unit": "5.5543084010857461703342193317978613491531546913444",
+          "warnings": []
+        }
+      ],
+      "probability_weighted_present_value": {
+        "operating_present_value": "21.419190573274984671583256693598728677966293587058",
+        "equity_value": "21.419190573274984671583256693598728677966293587058",
+        "terminal_present_value": "3.1581331050400543778447021480559599172021857156629",
+        "quote_currency_per_ordinary_share": "5.5543084010857461703342193317978613491531546913444",
+        "quote_currency_per_quote_unit": "5.5543084010857461703342193317978613491531546913444",
+        "enterprise_value": "21.419190573274984671583256693598728677966293587058",
+        "terminal_share_of_operating_value": "0.14744409198079128144626703889910838521615820864911"
+      },
+      "accounting_notes_unverified": {
+        "sbc": "Future new-grant economic cost retained in margin; existing rights represented by approximate economic share denominator. This is not a legal cap-table audit.",
+        "buybacks": "Static shares; no extra repurchase return. Holding model records dividends and retained cash separately.",
+        "leases": "Cash rent included in operating margins/reinvestment; same lease debt not deducted again.",
+        "cash_flow_adjustments": "Cash-taxed operating profit less net reinvestment; operating minority proxy already applied for Tencent. Nonoperating income excluded.",
+        "discount_rate": "Research assumption: CNY nominal risk-adjusted WACC; official 10Y reference1.64%, premiums and capital weights are assumptions.",
+        "terminal": "Next-year cash retains net reinvestment; growth times year10 cash, no second growth multiplication."
+      },
+      "limitations": [
+        "No automated verification of forecasts, sources, SBC, buybacks, certainty equivalents or financing feasibility.",
+        "Annual end-of-year cash flows only; no stub periods, mid-year convention, term structure, multi-currency segments, funding rounds, liquidation or changing share count.",
+        "Bridge amounts are present-value amounts in cash-flow currency; excess-asset declarations require an external accounting review."
+      ]
+    },
+    "standalone_component_value": "21.4191905732749846715832566935987286779662935",
+    "absolute_difference": "8.7058E-44",
+    "status": "PASS"
+  },
+  {
+    "company": "Kuaishou",
+    "scenario": "base",
+    "input": {
+      "schema_version": 1,
+      "name": "Kuaishou base core component reference",
+      "synthetic": false,
+      "valuation_date": "2026-10-23",
+      "data_cutoff": "2026-10-23",
+      "timing": "annual_end_of_year",
+      "cash_flow_type": "FCFF",
+      "risk_adjustment": "risk_adjusted",
+      "cash_flow_basis": "nominal",
+      "cash_flow_currency": "CNY",
+      "quote_currency": "HKD",
+      "value_scale": "1000000000",
+      "quote_currency_per_cashflow_currency": "1.16691560866318147871545929798356982823002240",
+      "ordinary_shares": "4.50",
+      "shares_scale": "1000000000",
+      "shares_as_of": "2026-10-23",
+      "ordinary_shares_per_quote_unit": "1",
+      "equity_bridge": {
+        "excess_cash": {
+          "amount": "0",
+          "excluded_from_cash_flows": true,
+          "rationale": "Component-only mathematical check; full bridge in model_inputs.json"
+        },
+        "nonoperating_investments": {
+          "amount": "0",
+          "excluded_from_cash_flows": true,
+          "rationale": "No investment income inside core FCFF"
+        },
+        "debt": "0",
+        "noncontrolling_interests": "0",
+        "other_equity_claims": "0"
+      },
+      "accounting_notes": {
+        "sbc": "Future new-grant economic cost retained in margin; existing rights represented by approximate economic share denominator. This is not a legal cap-table audit.",
+        "buybacks": "Static shares; no extra repurchase return. Holding model records dividends and retained cash separately.",
+        "leases": "Cash rent included in operating margins/reinvestment; same lease debt not deducted again.",
+        "cash_flow_adjustments": "Cash-taxed operating profit less net reinvestment; operating minority proxy already applied for Tencent. Nonoperating income excluded.",
+        "discount_rate": "Research assumption: CNY nominal risk-adjusted WACC; official 10Y reference1.64%, premiums and capital weights are assumptions.",
+        "terminal": "Next-year cash retains net reinvestment; growth times year10 cash, no second growth multiplication."
+      },
+      "scenarios": [
+        {
+          "name": "base",
+          "probability": "1",
+          "discount_rate": {
+            "value": "0.105",
+            "kind": "wacc",
+            "currency": "CNY",
+            "basis": "nominal"
+          },
+          "cash_flows": [
+            {
+              "year": 1,
+              "amount": "9.5720"
+            },
+            {
+              "year": 2,
+              "amount": "10.771250"
+            },
+            {
+              "year": 3,
+              "amount": "12.0212"
+            },
+            {
+              "year": 4,
+              "amount": "12.5230367346938775510204081632653061224489796"
+            },
+            {
+              "year": 5,
+              "amount": "13.0350612244897959183673469387755102040816326"
+            },
+            {
+              "year": 6,
+              "amount": "13.5572734693877551020408163265306122448979592"
+            },
+            {
+              "year": 7,
+              "amount": "14.0896734693877551020408163265306122448979591"
+            },
+            {
+              "year": 8,
+              "amount": "14.6322612244897959183673469387755102040816327"
+            },
+            {
+              "year": 9,
+              "amount": "15.1850367346938775510204081632653061224489796"
+            },
+            {
+              "year": 10,
+              "amount": "15.7480"
+            }
+          ],
+          "terminal": {
+            "method": "next_year_cash_flow",
+            "growth_rate": "0.01",
+            "currency": "CNY",
+            "basis": "nominal",
+            "next_year_cash_flow": "15.905480"
+          }
+        }
+      ]
+    },
+    "output": {
+      "schema_version": 1,
+      "name": "Kuaishou base core component reference",
+      "synthetic": false,
+      "notice": "Arithmetic and declared conventions checked; evidence and economic assumptions remain unverified by this engine",
+      "valuation_date": "2026-10-23",
+      "data_cutoff": "2026-10-23",
+      "cash_flow_type": "FCFF",
+      "risk_adjustment": "risk_adjusted",
+      "cash_flow_basis": "nominal",
+      "timing": "annual_end_of_year",
+      "units": {
+        "values": "1000000000 CNY",
+        "prices": "HKD per quoted unit",
+        "quote_currency_per_cashflow_currency": "1.16691560866318147871545929798356982823002240",
+        "ordinary_shares": "4500000000.00",
+        "ordinary_shares_per_quote_unit": "1"
+      },
+      "scenarios": [
+        {
+          "name": "base",
+          "probability": "1",
+          "discount_rate": "0.105",
+          "terminal_growth_rate": "0.01",
+          "cash_flow_present_values": [
+            {
+              "year": 1,
+              "cash_flow": "9.5720",
+              "discount_factor": "0.90497737556561085972850678733031674208144796380090",
+              "present_value": "8.6624434389140271493212669683257918552036199095023"
+            },
+            {
+              "year": 2,
+              "cash_flow": "10.771250",
+              "discount_factor": "0.81898405028562068753711021477856718740402530660715",
+              "present_value": "8.8214819516389918306340984009336418173256075837923"
+            },
+            {
+              "year": 3,
+              "cash_flow": "12.0212",
+              "discount_factor": "0.74116203645757528283901376903037754516201385213317",
+              "present_value": "8.9096570726638039900643523202679745459016009192633"
+            },
+            {
+              "year": 4,
+              "cash_flow": "12.5230367346938775510204081632653061224489796",
+              "discount_factor": "0.67073487462224007496743327514061316304254647251871",
+              "present_value": "8.3996374741346047043709412184613119694286151253914"
+            },
+            {
+              "year": 5,
+              "cash_flow": "13.0350612244897959183673469387755102040816326",
+              "discount_factor": "0.60699988653596386874880839379241010230094703395358",
+              "present_value": "7.9122806842546483738673755033938897086011486949911"
+            },
+            {
+              "year": 6,
+              "cash_flow": "13.5572734693877551020408163265306122448979592",
+              "discount_factor": "0.54932116428594015271385375003838018307778012122496",
+              "present_value": "7.4472972467469688462202125472346163520763476073872"
+            },
+            {
+              "year": 7,
+              "cash_flow": "14.0896734693877551020408163265306122448979591",
+              "discount_factor": "0.49712322559813588480891742084921283536450689703616",
+              "present_value": "7.0043039227265188991177088540769682909927218904935"
+            },
+            {
+              "year": 8,
+              "cash_flow": "14.6322612244897959183673469387755102040816327",
+              "discount_factor": "0.44988527203451211294924653470516998675520986157119",
+              "present_value": "6.5828388214596351500416559153089906375457096275905"
+            },
+            {
+              "year": 9,
+              "cash_flow": "15.1850367346938775510204081632653061224489796",
+              "discount_factor": "0.40713599279141367687714618525354749932598177517755",
+              "present_value": "6.1823750065536784087798399019145770708466411526027"
+            },
+            {
+              "year": 10,
+              "cash_flow": "15.7480",
+              "discount_factor": "0.36844886225467301074854858393986199034025500016067",
+              "present_value": "5.8023326827865905732681430998849466238783357425303"
+            }
+          ],
+          "explicit_cash_flow_pv": "75.724648301879467925685594729802708871800348253543",
+          "terminal_next_year_cash_flow": "15.905480",
+          "terminal_value_at_horizon": "167.42610526315789473684210526315789473684210526316",
+          "terminal_present_value": "61.687957995941647147377100325092590422285464210060",
+          "terminal_share_of_operating_value": "0.44892502702584866933048372178984374073253435395833",
+          "operating_present_value": "137.41260629782111507306269505489529929408581246360",
+          "enterprise_value": "137.41260629782111507306269505489529929408581246360",
+          "equity_bridge_additions": "0",
+          "equity_bridge_deductions": "0",
+          "equity_value": "137.41260629782111507306269505489529929408581246360",
+          "quote_currency_per_ordinary_share": "35.633092248003566890990035851510066408930226718933",
+          "quote_currency_per_quote_unit": "35.633092248003566890990035851510066408930226718933",
+          "warnings": []
+        }
+      ],
+      "probability_weighted_present_value": {
+        "operating_present_value": "137.41260629782111507306269505489529929408581246360",
+        "equity_value": "137.41260629782111507306269505489529929408581246360",
+        "terminal_present_value": "61.687957995941647147377100325092590422285464210060",
+        "quote_currency_per_ordinary_share": "35.633092248003566890990035851510066408930226718933",
+        "quote_currency_per_quote_unit": "35.633092248003566890990035851510066408930226718933",
+        "enterprise_value": "137.41260629782111507306269505489529929408581246360",
+        "terminal_share_of_operating_value": "0.44892502702584866933048372178984374073253435395833"
+      },
+      "accounting_notes_unverified": {
+        "sbc": "Future new-grant economic cost retained in margin; existing rights represented by approximate economic share denominator. This is not a legal cap-table audit.",
+        "buybacks": "Static shares; no extra repurchase return. Holding model records dividends and retained cash separately.",
+        "leases": "Cash rent included in operating margins/reinvestment; same lease debt not deducted again.",
+        "cash_flow_adjustments": "Cash-taxed operating profit less net reinvestment; operating minority proxy already applied for Tencent. Nonoperating income excluded.",
+        "discount_rate": "Research assumption: CNY nominal risk-adjusted WACC; official 10Y reference1.64%, premiums and capital weights are assumptions.",
+        "terminal": "Next-year cash retains net reinvestment; growth times year10 cash, no second growth multiplication."
+      },
+      "limitations": [
+        "No automated verification of forecasts, sources, SBC, buybacks, certainty equivalents or financing feasibility.",
+        "Annual end-of-year cash flows only; no stub periods, mid-year convention, term structure, multi-currency segments, funding rounds, liquidation or changing share count.",
+        "Bridge amounts are present-value amounts in cash-flow currency; excess-asset declarations require an external accounting review."
+      ]
+    },
+    "standalone_component_value": "137.412606297821115073062695054895299294085812",
+    "absolute_difference": "4.6360E-43",
+    "status": "PASS"
+  },
+  {
+    "company": "Kuaishou",
+    "scenario": "bull",
+    "input": {
+      "schema_version": 1,
+      "name": "Kuaishou bull core component reference",
+      "synthetic": false,
+      "valuation_date": "2026-10-23",
+      "data_cutoff": "2026-10-23",
+      "timing": "annual_end_of_year",
+      "cash_flow_type": "FCFF",
+      "risk_adjustment": "risk_adjusted",
+      "cash_flow_basis": "nominal",
+      "cash_flow_currency": "CNY",
+      "quote_currency": "HKD",
+      "value_scale": "1000000000",
+      "quote_currency_per_cashflow_currency": "1.16691560866318147871545929798356982823002240",
+      "ordinary_shares": "4.50",
+      "shares_scale": "1000000000",
+      "shares_as_of": "2026-10-23",
+      "ordinary_shares_per_quote_unit": "1",
+      "equity_bridge": {
+        "excess_cash": {
+          "amount": "0",
+          "excluded_from_cash_flows": true,
+          "rationale": "Component-only mathematical check; full bridge in model_inputs.json"
+        },
+        "nonoperating_investments": {
+          "amount": "0",
+          "excluded_from_cash_flows": true,
+          "rationale": "No investment income inside core FCFF"
+        },
+        "debt": "0",
+        "noncontrolling_interests": "0",
+        "other_equity_claims": "0"
+      },
+      "accounting_notes": {
+        "sbc": "Future new-grant economic cost retained in margin; existing rights represented by approximate economic share denominator. This is not a legal cap-table audit.",
+        "buybacks": "Static shares; no extra repurchase return. Holding model records dividends and retained cash separately.",
+        "leases": "Cash rent included in operating margins/reinvestment; same lease debt not deducted again.",
+        "cash_flow_adjustments": "Cash-taxed operating profit less net reinvestment; operating minority proxy already applied for Tencent. Nonoperating income excluded.",
+        "discount_rate": "Research assumption: CNY nominal risk-adjusted WACC; official 10Y reference1.64%, premiums and capital weights are assumptions.",
+        "terminal": "Next-year cash retains net reinvestment; growth times year10 cash, no second growth multiplication."
+      },
+      "scenarios": [
+        {
+          "name": "bull",
+          "probability": "1",
+          "discount_rate": {
+            "value": "0.105",
+            "kind": "wacc",
+            "currency": "CNY",
+            "basis": "nominal"
+          },
+          "cash_flows": [
+            {
+              "year": 1,
+              "amount": "12.3800"
+            },
+            {
+              "year": 2,
+              "amount": "14.76250"
+            },
+            {
+              "year": 3,
+              "amount": "17.3400"
+            },
+            {
+              "year": 4,
+              "amount": "18.6952653061224489795918367346938775510204082"
+            },
+            {
+              "year": 5,
+              "amount": "20.0919183673469387755102040816326530612244899"
+            },
+            {
+              "year": 6,
+              "amount": "21.5299591836734693877551020408163265306122450"
+            },
+            {
+              "year": 7,
+              "amount": "23.0093877551020408163265306122448979591836734"
+            },
+            {
+              "year": 8,
+              "amount": "24.5302040816326530612244897959183673469387754"
+            },
+            {
+              "year": 9,
+              "amount": "26.0924081632653061224489795918367346938775510"
+            },
+            {
+              "year": 10,
+              "amount": "27.6960"
+            }
+          ],
+          "terminal": {
+            "method": "next_year_cash_flow",
+            "growth_rate": "0.02",
+            "currency": "CNY",
+            "basis": "nominal",
+            "next_year_cash_flow": "28.249920"
+          }
+        }
+      ]
+    },
+    "output": {
+      "schema_version": 1,
+      "name": "Kuaishou bull core component reference",
+      "synthetic": false,
+      "notice": "Arithmetic and declared conventions checked; evidence and economic assumptions remain unverified by this engine",
+      "valuation_date": "2026-10-23",
+      "data_cutoff": "2026-10-23",
+      "cash_flow_type": "FCFF",
+      "risk_adjustment": "risk_adjusted",
+      "cash_flow_basis": "nominal",
+      "timing": "annual_end_of_year",
+      "units": {
+        "values": "1000000000 CNY",
+        "prices": "HKD per quoted unit",
+        "quote_currency_per_cashflow_currency": "1.16691560866318147871545929798356982823002240",
+        "ordinary_shares": "4500000000.00",
+        "ordinary_shares_per_quote_unit": "1"
+      },
+      "scenarios": [
+        {
+          "name": "bull",
+          "probability": "1",
+          "discount_rate": "0.105",
+          "terminal_growth_rate": "0.02",
+          "cash_flow_present_values": [
+            {
+              "year": 1,
+              "cash_flow": "12.3800",
+              "discount_factor": "0.90497737556561085972850678733031674208144796380090",
+              "present_value": "11.203619909502262443438914027149321266968325791855"
+            },
+            {
+              "year": 2,
+              "cash_flow": "14.76250",
+              "discount_factor": "0.81898405028562068753711021477856718740402530660715",
+              "present_value": "12.090252042341475399766589545668598104051923588788"
+            },
+            {
+              "year": 3,
+              "cash_flow": "17.3400",
+              "discount_factor": "0.74116203645757528283901376903037754516201385213317",
+              "present_value": "12.851749712174355404428498754986746633109320195989"
+            },
+            {
+              "year": 4,
+              "cash_flow": "18.6952653061224489795918367346938775510204082",
+              "discount_factor": "0.67073487462224007496743327514061316304254647251871",
+              "present_value": "12.539566431131555530515646234520637123307335983563"
+            },
+            {
+              "year": 5,
+              "cash_flow": "20.0919183673469387755102040816326530612244899",
+              "discount_factor": "0.60699988653596386874880839379241010230094703395358",
+              "present_value": "12.195792169269440257932180794330671741952889016554"
+            },
+            {
+              "year": 6,
+              "cash_flow": "21.5299591836734693877551020408163265306122450",
+              "discount_factor": "0.54932116428594015271385375003838018307778012122496",
+              "present_value": "11.826862245804279816902629856540609489412235544389"
+            },
+            {
+              "year": 7,
+              "cash_flow": "23.0093877551020408163265306122448979591836734",
+              "discount_factor": "0.49712322559813588480891742084921283536450689703616",
+              "present_value": "11.438501059854577238503306843074561293062590702901"
+            },
+            {
+              "year": 8,
+              "cash_flow": "24.5302040816326530612244897959183673469387754",
+              "discount_factor": "0.44988527203451211294924653470516998675520986157119",
+              "present_value": "11.035777536327405500463986730304494299592390754734"
+            },
+            {
+              "year": 9,
+              "cash_flow": "26.0924081632653061224489795918367346938775510",
+              "discount_factor": "0.40713599279141367687714618525354749932598177517755",
+              "present_value": "10.623158501869807050415999141629542392209159727491"
+            },
+            {
+              "year": 10,
+              "cash_flow": "27.6960",
+              "discount_factor": "0.36844886225467301074854858393986199034025500016067",
+              "present_value": "10.204559689005423705691801580798417684463702484450"
+            }
+          ],
+          "explicit_cash_flow_pv": "116.00983929728058234805955350900360002812987379071",
+          "terminal_next_year_cash_flow": "28.249920",
+          "terminal_value_at_horizon": "332.352",
+          "terminal_present_value": "122.45471626806508446830161896958101221356442981340",
+          "terminal_share_of_operating_value": "0.51351328073789656643302066101135190549135619001193",
+          "operating_present_value": "238.46455556534566681636117247858461224169430360411",
+          "enterprise_value": "238.46455556534566681636117247858461224169430360411",
+          "equity_bridge_additions": "0",
+          "equity_bridge_deductions": "0",
+          "equity_value": "238.46455556534566681636117247858461224169430360411",
+          "quote_currency_per_ordinary_share": "61.837336000473422023162282299857017115201617767031",
+          "quote_currency_per_quote_unit": "61.837336000473422023162282299857017115201617767031",
+          "warnings": []
+        }
+      ],
+      "probability_weighted_present_value": {
+        "operating_present_value": "238.46455556534566681636117247858461224169430360411",
+        "equity_value": "238.46455556534566681636117247858461224169430360411",
+        "terminal_present_value": "122.45471626806508446830161896958101221356442981340",
+        "quote_currency_per_ordinary_share": "61.837336000473422023162282299857017115201617767031",
+        "quote_currency_per_quote_unit": "61.837336000473422023162282299857017115201617767031",
+        "enterprise_value": "238.46455556534566681636117247858461224169430360411",
+        "terminal_share_of_operating_value": "0.51351328073789656643302066101135190549135619001193"
+      },
+      "accounting_notes_unverified": {
+        "sbc": "Future new-grant economic cost retained in margin; existing rights represented by approximate economic share denominator. This is not a legal cap-table audit.",
+        "buybacks": "Static shares; no extra repurchase return. Holding model records dividends and retained cash separately.",
+        "leases": "Cash rent included in operating margins/reinvestment; same lease debt not deducted again.",
+        "cash_flow_adjustments": "Cash-taxed operating profit less net reinvestment; operating minority proxy already applied for Tencent. Nonoperating income excluded.",
+        "discount_rate": "Research assumption: CNY nominal risk-adjusted WACC; official 10Y reference1.64%, premiums and capital weights are assumptions.",
+        "terminal": "Next-year cash retains net reinvestment; growth times year10 cash, no second growth multiplication."
+      },
+      "limitations": [
+        "No automated verification of forecasts, sources, SBC, buybacks, certainty equivalents or financing feasibility.",
+        "Annual end-of-year cash flows only; no stub periods, mid-year convention, term structure, multi-currency segments, funding rounds, liquidation or changing share count.",
+        "Bridge amounts are present-value amounts in cash-flow currency; excess-asset declarations require an external accounting review."
+      ]
+    },
+    "standalone_component_value": "238.464555565345666816361172478584612241694304",
+    "absolute_difference": "3.9589E-43",
+    "status": "PASS"
+  }
+]

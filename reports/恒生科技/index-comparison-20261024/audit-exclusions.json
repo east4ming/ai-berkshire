@@ -1,0 +1,11 @@
+[
+  {
+    "id": 78,
+    "label": "date",
+    "reported_value": 2026.0,
+    "unit": "",
+    "raw_text": "date: 2026-10-24",
+    "line_number": 3,
+    "reason": "Front-matter date misparsed as financial value 2026; metadata verified separately"
+  }
+]

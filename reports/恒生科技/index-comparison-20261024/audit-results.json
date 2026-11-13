@@ -1,0 +1,38 @@
+{
+  "status": "PASS_WITH_EXPLICIT_SCOPE",
+  "data_quality": "PARTIAL_DUAL_SOURCE",
+  "report_sha256": "35fce94314161d8efdeae78a944f04bc9526eb722c2a81bc7efd5103869a722e",
+  "extracted_points": 79,
+  "random_sample": 12,
+  "source_formula_checked": 8,
+  "assumptions_checked": 3,
+  "excluded_metadata": 1,
+  "additional_consistency_checks": 19,
+  "outcomes": {
+    "facts-formulas": {
+      "verdict": "PASS",
+      "pass_count": 8,
+      "warn_count": 0,
+      "fail_count": 0,
+      "total": 8,
+      "fail_items": [],
+      "warn_items": []
+    },
+    "assumptions": {
+      "verdict": "PASS",
+      "pass_count": 3,
+      "warn_count": 0,
+      "fail_count": 0,
+      "total": 3,
+      "fail_items": [],
+      "warn_items": []
+    }
+  },
+  "limits": [
+    "No independent reconstruction of vendor PE/PB methodology",
+    "No US close mapping for NDX valuation labels",
+    "Scenario assumptions not validated forecasts",
+    "Single-source or shared-upstream facts explicitly labeled",
+    "financial_rigor calc uses float eval; authoritative arithmetic uses Decimal model"
+  ]
+}

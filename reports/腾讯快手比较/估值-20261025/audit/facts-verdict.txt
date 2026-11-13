@@ -1,0 +1,32 @@
+======================================================================
+报告数据抽检 — 准出/打回判决
+======================================================================
+
+  ✅ 通过 [ 9] TTM收入 · 腾讯                           报告:      7884.83
+                                                    https://www.tencent.com/wp-content/uploads/2026/08/E700_IR.pdf and https://www.hkexnews.hk/listedco/listconews/sehk/2026/0409/2026040901232_c.pdf; (751766+401243-364526)/100: 7884.83 (偏差 0.00%)  |  https://stockanalysis.com/quote/hkg/0700/financials/: 7884.83 (偏差 0.00%)
+  ✅ 通过 [23] 快手再扣租赁付款后的现金 · 快手                    报告:       -58.38
+                                                    https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0424/2026042401899.pdf and https://www.hkexnews.hk/listedco/listconews/sehk/2026/0903/2026090300643_c.pdf; TTM simple FCF-18.29 less lease cash40.09: -58.38 (偏差 0.00%)
+  ✅ 通过 [24] 核心收入构成 · 腾讯2026Q2                    报告:       984.14 亿元
+                                                    https://www.tencent.com/wp-content/uploads/2026/08/E700_IR.pdf p9 VAS revenue98414 million: 984.14 (偏差 0.00%)
+  ✅ 通过 [27] 总收入同比 · 快手2026Q2                     报告:         1.40 %
+                                                    https://www.hkexnews.hk/listedco/listconews/sehk/2026/0903/2026090300643_c.pdf second-quarter operating review; 35535/35046-1: 1.40 (偏差 0.00%)
+  ✅ 通过 [29] 广告收入同比 · 快手2026Q2                    报告:         4.40 %
+                                                    https://www.hkexnews.hk/listedco/listconews/sehk/2026/0903/2026090300643_c.pdf second-quarter online marketing review: 4.40 (偏差 0.00%)
+  ✅ 通过 [36] 腾讯收入 · 2024                          报告:      6602.57
+                                                    https://stockanalysis.com/quote/hkg/0700/financials/ FY2024 revenue660257 million; history is single-source in this run: 6602.57 (偏差 0.00%)
+  ✅ 通过 [51] 快手CFO · 2024                         报告:       297.87
+                                                    https://stockanalysis.com/quote/hkg/1024/financials/cash-flow-statement/ FY2024 CFO29787 million: 297.87 (偏差 0.00%)
+  ✅ 通过 [56] CFO · TTM重建                          报告:       239.79
+                                                    https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0424/2026042401899.pdf and https://www.hkexnews.hk/listedco/listconews/sehk/2026/0903/2026090300643_c.pdf; (26716+9044-11781)/100: 239.79 (偏差 0.00%)  |  https://stockanalysis.com/quote/hkg/1024/financials/cash-flow-statement/: 239.79 (偏差 0.00%)
+  ✅ 通过 [58] 固定及无形资产付款/预付款 · 2025H1               报告:        70.75
+                                                    https://www.hkexnews.hk/listedco/listconews/sehk/2026/0903/2026090300643_c.pdf p63 H12025 PPE/intangible payments and prepayments7075 million: 70.75 (偏差 0.00%)
+  ✅ 通过 [60] 固定及无形资产付款/预付款 · TTM重建                报告:       258.08
+                                                    https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0424/2026042401899.pdf and https://www.hkexnews.hk/listedco/listconews/sehk/2026/0903/2026090300643_c.pdf; (14942+17941-7075)/100; stale independent database rejected: 258.08 (偏差 0.00%)
+  ✅ 通过 [63] 简单FCF · 2026H1                       报告:       -88.97
+                                                    https://www.hkexnews.hk/listedco/listconews/sehk/2026/0903/2026090300643_c.pdf p63; (9044-17941)/100: -88.97 (偏差 0.00%)
+
+----------------------------------------------------------------------
+  抽检总数: 11  |  通过: 11  |  警告: 0  |  不通过: 0
+
+【准出】所有抽检数据通过，报告可发布。
+======================================================================

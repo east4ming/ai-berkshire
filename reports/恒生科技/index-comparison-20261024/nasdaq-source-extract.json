@@ -1,0 +1,128 @@
+{
+  "retrieved_date": "2026-10-24",
+  "ndx_ttm_pb": {
+    "source": "https://etf.whatsid.me/api/valuation/history",
+    "field": "display_history.NDX",
+    "data_version": "d706b2d9cc74609c8504b81ece223aa665f702a32ae416b758b9739200d3c656",
+    "data_as_of": "2026-10-23",
+    "origin_as_declared_by_page": "蛋卷基金",
+    "date_warning": "Historical Sunday labels; exact mapping to US close not independently verified",
+    "selected_observations": [
+      {
+        "date_label": "2022-10-09",
+        "pe_ttm": 23.48,
+        "pb": 6.306
+      },
+      {
+        "date_label": "2022-10-16",
+        "pe_ttm": 22.72,
+        "pb": 6.097
+      },
+      {
+        "date_label": "2022-10-23",
+        "pe_ttm": 23.98,
+        "pb": 6.439
+      },
+      {
+        "date_label": "2022-10-30",
+        "pe_ttm": 25.34,
+        "pb": 6.49
+      },
+      {
+        "date_label": "2026-10-07",
+        "pe_ttm": 30.57,
+        "pb": 9.67
+      },
+      {
+        "date_label": "2026-10-08",
+        "pe_ttm": 30.87,
+        "pb": 9.732
+      },
+      {
+        "date_label": "2026-10-11",
+        "pe_ttm": 30.78,
+        "pb": 9.703
+      },
+      {
+        "date_label": "2026-10-12",
+        "pe_ttm": 30.74,
+        "pb": 9.691
+      },
+      {
+        "date_label": "2026-10-13",
+        "pe_ttm": 30.08,
+        "pb": 9.501
+      },
+      {
+        "date_label": "2026-10-14",
+        "pe_ttm": 30.04,
+        "pb": 9.49
+      },
+      {
+        "date_label": "2026-10-15",
+        "pe_ttm": 29.39,
+        "pb": 9.284
+      },
+      {
+        "date_label": "2026-10-18",
+        "pe_ttm": 29.74,
+        "pb": 9.395
+      },
+      {
+        "date_label": "2026-10-19",
+        "pe_ttm": 29.61,
+        "pb": 9.271
+      },
+      {
+        "date_label": "2026-10-20",
+        "pe_ttm": 29.77,
+        "pb": 9.342
+      },
+      {
+        "date_label": "2026-10-21",
+        "pe_ttm": 28.74,
+        "pb": 9.037
+      }
+    ]
+  },
+  "forward": {
+    "source": "https://historyofmarket.com/api/ndx/forward-pe.json",
+    "source_metadata": {
+      "method": "Terminal data — 12-month blended-forward consensus P/E, weekly",
+      "constituents": "Nasdaq 100 index members",
+      "perTicker": "constituent trailing-twelve-month EPS, one snapshot per name",
+      "trailingSeed": null,
+      "forwardFrequency": "weekly",
+      "forwardOwnMethod": "Blended forward 12M: FY1/FY2 consensus net income weighted by published ETF holdings; one point per day. Agrees with the terminal blended-forward series to within 3% on all four universes (verified 2026-08-05)."
+    },
+    "note": "Trailing PE is cap-weighted Σ(w·P)/Σ(w·trailingEps) computed from the 100 NDX constituents daily; with no comparable long-run series for NDX no historical seed is shown yet, and the line will fill in over time as we update regularly. Forward PE is terminal data — 12-month blended-forward consensus estimates back to April 2001, published as one point per week (the last reading of each week). Alongside it we publish a second forward series computed daily from consensus estimates and published ETF holdings, never blended into the first.",
+    "terminal_weekly_2022_oct": [
+      {
+        "date": "2022-10-07",
+        "value": 19.11
+      },
+      {
+        "date": "2022-10-14",
+        "value": 18.56
+      },
+      {
+        "date": "2022-10-21",
+        "value": 19.72
+      },
+      {
+        "date": "2022-10-28",
+        "value": 20.69
+      }
+    ],
+    "terminal_weekly_last": {
+      "date": "2026-08-05",
+      "value": 22.37
+    },
+    "own_daily_last": {
+      "date": "2026-10-23",
+      "value": 20.12,
+      "basis": "dl-blended-fy1fy2"
+    },
+    "non_comparability": "terminal_weekly and own_daily are separate methods; must not treat as one continuous historical series"
+  }
+}
